@@ -1,8 +1,7 @@
 
 
 <div align="center">
-  <h1 align="center">Bookzone</h1>
-  <img src="https://github.com/Malek-Mzali/Bookzone/blob/master/Bookzone/wwwroot/img/assets/logo.png" alt="Logo" width=40%>
+  <img src="https://github.com/Malek-Mzali/Bookzone/blob/master/Bookzone/wwwroot/img/assets/logo.png" alt="Logo" width="400" heigh="300">
 
   <p align="center">
     This work present my final project towards a bachelor’s degree in computer science.
