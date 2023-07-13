@@ -40,11 +40,12 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-<div align="center">
-  <img src="https://github.com/Malek-Mzali/Bookzone/blob/af4e9d1ef7ae62643a11b57c08f65314c531d5db/Bookzone/wwwroot/img/assets/home.png" alt="Logo" width="700" heigh="650">
-</div>
+![Home](https://github.com/Malek-Mzali/Bookzone/blob/af4e9d1ef7ae62643a11b57c08f65314c531d5db/Bookzone/wwwroot/img/assets/home.png)
 
-<!--![Home](https://github.com/Malek-Mzali/Bookzone/blob/af4e9d1ef7ae62643a11b57c08f65314c531d5db/Bookzone/wwwroot/img/assets/home.png)-->
+<!--
+  <img src="https://github.com/Malek-Mzali/Bookzone/blob/af4e9d1ef7ae62643a11b57c08f65314c531d5db/Bookzone/wwwroot/img/assets/home.png" alt="Logo" width="700" heigh="650">
+
+-->
 
 
 There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
