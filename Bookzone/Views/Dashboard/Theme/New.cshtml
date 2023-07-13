@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "New Theme";
+    Layout = "_DashboardLayout";
+}
+
+@model Bookzone.Models.Entity.Theme.Theme
+
+<div class="container-fluid py-4">
+<div class="row">
+<div class="col-11">
+<div class="mb-5">
+<!--progress bar-->
+
+<!--form panels-->
+<div class="row text-center">
+<div class="col-12 col-lg-8 m-auto">
+<form id="newThemeForm" method="post" class=" mb-8" style="height: 410px;">
+<!--new them-->
+<div class="card  p-3 border-radius-xl bg-white js-active" data-animation="FadeIn">
+    <h5 class="font-weight-bolder mb-0">New Theme</h5>
+    <div class="">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="avatar avatar-xxl position-relative">
+                    <div class="img-icon border-radius-md">
+                        <i class="" id="txtIconDisplay" ></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+
+            <div class="col-12 col-sm-6">
+                <label>Title</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                <input asp-for="Title" class=" form-control" data-val="true" data-val-required="Required field">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-sm-3 mt-3 mt-sm-0">
+                <label>ShortTitle</label>
+                <input asp-for="ShortTitle" class=" form-control">
+                <span asp-validation-for="ShortTitle" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-sm-3 mt-3 mt-sm-0">
+                <label>Icon</label>
+                <input asp-for="Icon" class=" form-control" id="txtNewIcon">
+                <span asp-validation-for="Icon" class="text-danger"></span>
+            </div>
+
+            <div class="col-12 mt-3">
+                <label>Description</label>
+                <textarea class=" form-control" rows="5"asp-for="Description" ></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="button-row d-flex mt-4">
+            <button class="btn bg-gradient-dark ms-auto mb-0" type="submit" title="Send">Create</button>
+        </div>
+    </div>
+</div>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Dashboard/Theme/NewTheme.js" asp-append-version="true"></script>
+}

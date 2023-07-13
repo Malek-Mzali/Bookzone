@@ -1,0 +1,31 @@
+﻿<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="~/js/Home/Shared.js"></script>
+<script>
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl)
+    })
+    const popover = new bootstrap.Popover(document.querySelector('#PopoverSearch'), {
+            container: 'body',
+            title: 'Search type',
+            html: true,
+            placement: 'bottom',
+            sanitize: false,
+            content() {
+                return document.querySelector('#PopoverContent').innerHTML;
+            }
+        })
+    function getValue(obj){
+        var x = $(obj).val()
+        if (x === ""){
+            x = "OriginalTitle"
+        }
+        $('#termType').val(x)
+    }
+    $("#SearchByTerm").submit(function(e) {
+        if ($('#termType').val()  === ""){
+            $('#termType').val("OriginalTitle")
+        }
+    })
+            
+</script>

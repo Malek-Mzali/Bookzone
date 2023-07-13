@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Wishlist";
+}
+
+@using System.Security.Claims
+@model IEnumerable<Ebook.Models.Entity.Document.DocumentInfo> 
+
+<div class="container py-3 mx-auto mt-3 mb-45 ">
+    
+    <div class="col-12 mb-3">
+        <div class="text-center">
+            <h4>WishList</h4>
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+
+        @if (!Model.Any())
+        {
+            <img loading="lazy" width="auto" src="/img/assets/empty.jpg" alt="">
+
+        }
+        else
+        {
+            @foreach (var document in Model)
+            {
+                <div class="col-md-auto">
+                    <div class="item">
+                        <div class="gallery">
+                                <div class="hoverfx">
+                                    <div class="figure">
+                                      <a target="_blank"  href="@document.DocumentGroup.Url" data-id="@document.DocumentGroup.Id}"><i class="icon fa fa-eye" ></i></a>
+                                    </div>
+                                    
+                                    <div class="figure">
+                                      <a class="cursor-p" onclick="RemoveFromWishList(this)" data-id="@document.DocumentGroup.Id" ><i class="icon fa fa-heart-o"></i></a>
+                                    </div>
+                                    <div class="figure">
+                                      <a class="cursor-p AddToCart" onclick="AddToCart(this)" data-id="@document.DocumentGroup.Id"><i class="icon fa fa-shopping-cart" ></i></a>
+                                    </div>
+                                    
+                                    <div class="price">@document.DocumentGroup.Price DT</div>
+                                    <div class="overlay">
+                                    </div>
+                                    <a target="_blank"  href="@document.DocumentGroup.Url">
+                                    <img src="/img/document/@document.DocumentGroup.CoverPage" alt="@document.DocumentGroup.OriginalTitle" width="620" height="450">
+                                    </a>
+    
+                                </div>
+
+                            
+
+                        <div class="desc"><a   target="_blank"  href="@document.DocumentGroup.Url">@document.DocumentGroup.OriginalTitle</a></div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            }
+        }
+        
+
+    </div>
+</div>
+
+
+
+
+
+

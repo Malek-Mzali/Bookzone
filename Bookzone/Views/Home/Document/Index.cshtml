@@ -1,0 +1,276 @@
+﻿@using System.Security.Claims
+@model Ebook.Models.Entity.Document.DocumentInfo
+
+@{
+    Layout = "_Layout";
+}
+
+
+<div class="container pt-5 pt-md-2" id="DocumentDetails" xmlns="http://www.w3.org/1999/html">
+    <div class="row extra-row m-auto p-3 border">
+        <div class="col-12">
+            <div class="book-item">
+                <div class="row extra-row">
+                    <input type="hidden" id="txtId" value="@Model.DocumentGroup.Id">
+                    <input type="hidden" id="txtCollectionId" value="@Model.DocumentGroup.IdCollection"/>
+                    <input type="hidden" id="txtEditorId" value="@Model.DocumentGroup.IdEditor"/>
+                    <input type="hidden" id="txtAuthorId" value="@Model.DocumentGroup.IdAuthor"/>
+
+
+                    
+                    <div class="col-12 col-md-3">
+                        <img class="cursor-pointer pb-3 pb-md-0" height="100%"  width="100%" src="/img/document/@Model.DocumentGroup.CoverPage" id="txtPhoto" alt="@Model.DocumentGroup.OriginalTitle">
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <div class="book-details">
+                            <div class="book-detail">
+                                <h2 class="book-title text-uppercase cursor-pointer" id="txtOriginalTitle">@Model.DocumentGroup.OriginalTitle @(Model.DocumentGroup.Subtitle != "" ? " : "+@Model.DocumentGroup.Subtitle : "")</h2>
+                            </div>
+                            <div class="book-detail">
+                                <strong>Author : </strong><span data-bs-toggle="modal" data-bs-target="#AuthorInfo" class="text-capitalize cursor-p" id="txtAuthor"></span>
+                            </div>
+                            <div class="book-detail">
+
+                                <span><strong >@(Model.DocumentGroup.DocumentType == "Ebook" ? "ISBN" : "ISSN") : </strong><span id="txtIsbn/Issn">@(Model.DocumentGroup.DocumentType == "Ebook" ? Model.EbookGroup.Isbn : Model.EjournalGroup.Issn)</span></span>
+                            </div>
+                            <div class="book-detail">
+                                <span><strong>Publisher : </strong> <a href="#" class="text-reset" id="txtEditor"></a></span>
+                            </div>
+                            <div class="book-detail">
+                                <span><strong>Theme : </strong><span id="txtTheme"></span></span>
+                            </div>
+                            <div class="book-detail">
+                                <span><strong>Collection : </strong><span id="txtCollection"></span></span>
+                            </div>
+                            <div class="book-detail">
+                                <span><strong>Publication date : </strong> <span id="txtPublicationDate">@Model.DocumentGroup.PublicationDate</span></span>
+                            </div>
+                            <div class="book-detail">
+                                <span><strong></strong><span id="txtPages"></span></span>
+                            </div>
+
+                            <div class="book-detail">
+                                <span><strong>Language : </strong><span id="txtLanguage">@Model.DocumentGroup.OriginalLanguage</span></span>
+                            </div>
+                            <div class="book-detail">
+                                <span><strong>Price : </strong><span id="txtprice">@Model.DocumentGroup.Price DT </span></span>
+                            </div>
+                            
+                            @if (Model.DocumentGroup.DocumentType == "Ebook" && Model.EbookGroup.NbPages > 0)
+                            {
+                                <div class="book-detail">
+                                    <span><strong>Pages  : </strong><span id="txtnbPages">@Model.EbookGroup.NbPages</span></span>
+                                </div>
+                            }
+
+                            <div class="book-detail">
+                                <span><strong>Keywords : </strong><span id="txtKeyword">@string.Join(" , ", @Model.DocumentGroup.Keyword) </span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3 mt-2">
+                        @if (Model.DocumentGroup.AccessType == "Open" && !User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="Account" asp-action="Index" class="btn btnbook  form-control my-auto mr-auto"><i class="fa fa-eye"></i> Read</a>
+
+                        }else if (Model.DocumentGroup.AccessType == "Open" && User.Identity.IsAuthenticated)
+                        {
+                            <span href="#" class=" download btn btnbook form-control my-auto mr-auto">
+                                <span class="glyphicon glyphicon-download-alt"></span>
+                                <span class="down-hide"> <i class="fa fa-eye"></i> Read</span>
+                                <span class="download-q">
+                                    <a id="View" target="_blank" asp-controller="Home" asp-action="View" asp-route-auth="@Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(User.FindFirst(ClaimTypes.NameIdentifier).Value+";"+Model.DocumentGroup.Id))"  class="my-auto mr-auto text-decoration-none text-reset"><i class="fa fa-globe"></i> Online</a> | <a target="_blank" class="my-auto mr-auto text-decoration-none text-reset" asp-controller="Home" asp-action="Download" asp-route-auth="@Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(User.FindFirst(ClaimTypes.NameIdentifier).Value+";"+Model.DocumentGroup.Id))"><i class="fa fa-download"></i><span> Download</span></a>
+                                </span>
+                            </span>
+                        }else if (Model.DocumentGroup.AccessType == "Closed" && User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Editor")  && Model.DocumentGroup.IdEditor.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier) )
+                            {
+                                <span href="#" class=" download btn btnbook form-control my-auto mr-auto">
+                                    <span class="glyphicon glyphicon-download-alt"></span>
+                                    <span class="down-hide"> <i class="fa fa-eye"></i> Read</span>
+                                    <span class="download-q">
+                                        <a id="View" target="_blank" asp-controller="Home" asp-action="View" asp-route-auth="@Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(User.FindFirst(ClaimTypes.NameIdentifier).Value+";"+Model.DocumentGroup.Id))"  class="my-auto mr-auto text-decoration-none text-reset"><i class="fa fa-globe"></i> Online</a> | <a target="_blank" class="my-auto mr-auto text-decoration-none text-reset" asp-controller="Home" asp-action="Download" asp-route-auth="@Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(User.FindFirst(ClaimTypes.NameIdentifier).Value+";"+Model.DocumentGroup.Id))"><i class="fa fa-download"></i><span> Download</span></a>
+                                    </span>
+                                </span>
+                            }
+                            else if (User.IsInRole("Editor")  && Model.DocumentGroup.IdEditor.ToString() != User.FindFirstValue(ClaimTypes.NameIdentifier) )
+                            {
+                                <button  class="btn btnbook  form-control my-auto mr-auto" disabled="disabled"><i class="fa fa-hand-stop-o"></i> You can't read this</button>
+                            }
+                            else
+                            {
+                                
+                                if (@ViewBag.acess)
+                                {
+                                    <span href="#" class=" download btn btnbook form-control my-auto mr-auto">
+                                        <span class="glyphicon glyphicon-download-alt"></span>
+                                        <span class="down-hide"> <i class="fa fa-eye"></i> Read</span>
+                                        <span class="download-q">
+                                            <a id="View" target="_blank" asp-controller="Home" asp-action="View" asp-route-auth="@Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(User.FindFirst(ClaimTypes.NameIdentifier).Value + ";" + Model.DocumentGroup.Id))" class="my-auto mr-auto text-decoration-none text-reset"><i class="fa fa-globe"></i> Online</a> | <a target="_blank" class="my-auto mr-auto text-decoration-none text-reset" asp-controller="Home" asp-action="Download" asp-route-auth="@Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(User.FindFirst(ClaimTypes.NameIdentifier).Value + ";" + Model.DocumentGroup.Id))"><i class="fa fa-download"></i><span> Download</span></a>
+                                        </span>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <button  class="btn btnbook  form-control my-auto mr-auto" onclick="AddToCart(this)" data-id="@Model.DocumentGroup.Id"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <button  class="btn btnbook  form-control my-auto mr-auto" onclick="AddToCart(this)" data-id="@Model.DocumentGroup.Id"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                        }
+                    </div>
+
+                    
+
+                    
+                    
+
+                </div>
+            </div>
+        <div class="tabs-details">
+
+            <div class="row">
+                <div class="container" id="BookMoreDetails">
+                    <ul class="nav nav-tabs mb-2"  role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Summary</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="last-tab" data-bs-toggle="tab" data-bs-target="#last" type="button" role="tab" aria-controls="last" aria-selected="false">Abstract</a>
+                        </li>                                
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="Notes-tab" data-bs-toggle="tab" data-bs-target="#Notes" type="button" role="tab" aria-controls="Notes" aria-selected="false">Notes</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="Comments-tab" data-bs-toggle="tab" data-bs-target="#Comments" type="button" role="tab" aria-controls="Comments" aria-selected="false">Comments</a>
+                        </li>
+                                
+                    </ul>
+                    <div class="tab-content" id="BookMoreDetailsContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <table id="SummaryListTable"  class="table table-hover  nowrap table-responsive-sm table-bordered border-light">
+                                <thead>
+                                <tr>
+                                    <th >Title</th>
+                                    <th class="text-center">Start</th>
+                                    <th class="text-center">End</th>
+                                </tr>
+                                </thead>
+                                <tbody id="SummaryList">
+                                </tbody>
+                                    
+                            </table>
+                        </div>
+                        <div class="tab-pane fade p-3 border" id="last" role="tabpanel" aria-labelledby="last-tab"><span id="txtAbstract">@Html.Raw(Model.DocumentGroup.Abstract != "" ? Model.DocumentGroup.Abstract : "No data available")</span></div>
+                        <div class="tab-pane fade p-3 border" id="Notes" role="tabpanel" aria-labelledby="Notes-tab"><span id="txtNotes">@Html.Raw(Model.DocumentGroup.Notes != "" ? Model.DocumentGroup.Notes : "No data available")</span></div>
+                        <div class="tab-pane fade p-3 border    " id="Comments" role="tabpanel" aria-labelledby="Comments-tab">
+
+                            <div class="container">
+                                <div class="row">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <div class="col-md-12">
+                                            <div class="media g-mb-30 media-comment border-bottom">
+                                                <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="/img/profile/@User.FindFirst(ClaimTypes.Surname).Value" alt="">
+                                                <div class="media-body mb-3 px-3">
+                                                    <form method="post" id="NewCommentForm">
+                                                        <div id="snow-container"></div>
+                                                        <input hidden="hidden"  name="IdUser" id="txtuserID" value="@User.FindFirst(ClaimTypes.NameIdentifier).Value"/>
+                                                        <textarea name="Text" style="display:none" id="NewComment"></textarea>
+                                                        <button class="btn btn-outline-dark btn-sm  mt-2" type="submit">Comment</button>
+                                                    </form>
+                                                    <input hidden="hidden"  id="txtRoleUser" value="@User.FindFirst(ClaimTypes.Role).Value"/>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="row" id="CommentsSection">
+
+
+
+
+                                </div>
+                            </div>
+                                    
+                                    
+                        </div>
+                                
+                    </div>
+                </div>
+            </div>
+                
+        </div>
+        
+        @*<div class="row">
+            <div class="col-12 col-md-4 similar-book">
+                <a href="https://iwaatch.com/movie/Still_Alice">
+                    <img src="/img/document/6f3e9268-028b-478c-9c7b-2b86e94d213a_20120.jpg">
+                </a>                        <a href="https://iwaatch.com/movie/Still_Alice">
+                    <img src="/img/document/6f3e9268-028b-478c-9c7b-2b86e94d213a_20120.jpg">
+                </a>                        <a href="https://iwaatch.com/movie/Still_Alice">
+                    <img src="/img/document/6f3e9268-028b-478c-9c7b-2b86e94d213a_20120.jpg">
+                </a>                        <a href="https://iwaatch.com/movie/Still_Alice">
+                    <img src="/img/document/6f3e9268-028b-478c-9c7b-2b86e94d213a_20120.jpg">
+                </a>
+                                        
+            </div>
+        </div>*@
+        
+        
+        </div>
+    </div>
+    
+</div>
+
+<script src="~/js/Home/Document/Document.js" asp-append-version="true"></script>
+<script src="~/js/datatables.min.js"></script>
+<script src="~/plugins/quill/js/quill.min.js"></script>
+<script src="~/plugins/Moment/Js/moment.min.js"></script>
+
+
+<div class="modal fade" id="AuthorInfo"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="card-body">
+                    <div class="row">
+
+
+                        <div class="col-md-3 col-sm-12 col-xs-12 col-12 ">
+                            <img class="img-fluid " id="AuthorPhoto" src=""  alt="">
+                        </div>
+
+                        <div class="col-md-9 col-12 ">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link active" id="Documents-tab" data-bs-toggle="tab" data-bs-target="#Documents" type="button" role="tab" aria-controls="Documents" aria-selected="true">Documents</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="Biography-tab" data-bs-toggle="tab" data-bs-target="#Biography" type="button" role="tab" aria-controls="Biography" aria-selected="false">Biography</a>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content" id="authorContent">
+                                <div class="tab-pane fade show active" id="Documents" role="tabpanel" aria-labelledby="Documents-tab">
+                                    <table id="DocumentListAuthor" class="table table-stripe table-bordered table-hover dt-responsive nowrap">
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade p-3" id="Biography" role="tabpanel" aria-labelledby="Biography-tab">
+                                    <p id="txtBiography"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

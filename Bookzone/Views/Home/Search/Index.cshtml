@@ -1,0 +1,148 @@
+﻿@model IEnumerable<Ebook.Models.Entity.Document.DocumentInfo>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "_Layout";
+}
+
+
+
+<input type="hidden" id="txtTheme" value="@Context.Request.Query["id"]">
+
+<div class="container ">
+    <div class="row extra-row m-auto">
+        <div class="col-12 col-md-4">
+            <div class="filter-book border mt-5 p-2">    
+                <span class="title-filter">FILTER BY</span>
+                
+                <div class="col mb-3">
+
+                        <select class="btn border w-100" id="sortType">
+                            <option disabled selected hidden>Sort by</option>
+                            <option   value="Name">Name</option>
+                            <option   value="Date">Date</option>
+                        </select>
+                        
+                </div>
+                @if (string.IsNullOrEmpty(Context.Request.Query["type"]))
+                {
+                    <div class="col mb-3">
+                        <p>
+                            <a class="btn border w-100" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Document type
+                            </a>
+                        </p>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                                <div class="form-check">
+                                    <input class="form-check-input documentTypeCheckbox" type="checkbox" value="Ebook" id="EBookChoice" checked>
+                                    <label class="form-check-label" for="EBookChoice">
+                                        E-Book
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input documentTypeCheckbox" type="checkbox" value="Ejournal" id="EJournalChoice" checked>
+                                    <label class="form-check-label" for="EJournalChoice">
+                                        E-Journal
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+                <div class="col mb-3">
+                    <p>
+                        <a class="btn border w-100" data-bs-toggle="collapse" href="#PulisherExample" role="button" aria-expanded="false" aria-controls="PulisherExample">
+                            Publisher
+                        </a>
+                    </p>
+                    <div class="collapse" id="PulisherExample">
+                        <div class="card card-body" id="PublisherList">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <p>
+                        <a class="btn border w-100" data-bs-toggle="collapse" href="#Collectionxample" role="button" aria-expanded="false" aria-controls="Collectionxample">
+                            Collection
+                        </a>
+                    </p>
+                    <div class="collapse" id="Collectionxample">
+                        <div class="card card-body" id="CollectionList">
+                            
+                        </div>
+                    </div>
+                </div> 
+                <div class="col mb-3">
+                    <p>
+                        <a class="btn border w-100" data-bs-toggle="collapse" href="#AuthorExample" role="button" aria-expanded="false" aria-controls="AuthorExample">
+                            Author
+                        </a>
+                    </p>
+                    <div class="collapse" id="AuthorExample">
+                        <div class="card card-body" id="AuthorList">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <p>
+                        <a class="btn border w-100" data-bs-toggle="collapse" href="#LanguageExample" role="button" aria-expanded="false" aria-controls="LanguageExample">
+                            Language
+                        </a>
+                    </p>
+                    <div class="collapse" id="LanguageExample">
+                        <div class="card card-body">
+                            <div class="form-check">
+                                <input class="form-check-input languageCheckbox" type="checkbox" value="English" id="EnglishLanguage" checked>
+                                <label class="form-check-label" for="EnglishLanguage">
+                                    English
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input languageCheckbox" type="checkbox" value="French" id="FrenchLanguage" checked>
+                                <label class="form-check-label" for="FrenchLanguage">
+                                    French
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input languageCheckbox" type="checkbox" value="Arabic" id="ArabicLanguage" checked>
+                                <label class="form-check-label" for="ArabicLanguage">
+                                    Arabic
+                                </label>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col mb-3">
+                    <p>
+                        <a class="btn border w-100" data-bs-toggle="collapse" href="#DateExample" role="button" aria-expanded="false" aria-controls="AuthorExample">
+                            Publication Date
+                        </a>
+                    </p>
+                    <div class="collapse" id="DateExample">
+                        <div class="card card-body" id="DateList">
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+        <div class="col-12 col-md-8">
+            <div class="border mt-5 py-2 mb-5" id="SearchResult">
+            </div>
+        </div>
+
+    </div>
+    
+        
+
+</div>
+<script>var dataArr = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));</script>
+<script src="~/js/Home/Search/Search.js" asp-append-version="true"></script>

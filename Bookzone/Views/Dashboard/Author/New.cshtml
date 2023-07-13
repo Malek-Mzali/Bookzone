@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "New Author";
+    Layout = "_DashboardLayout";
+}
+
+@model Bookzone.Models.Entity.Author.Author
+
+<div class="container-fluid py-4">
+<div class="row">
+<div class="col-11">
+<div class="mb-5">
+<!--progress bar-->
+
+<!--form panels-->
+<div class="row text-center">
+<div class="col-12 col-lg-8 m-auto">
+<form id="newAuthorForm" method="post" class=" mb-8" style="height: 410px;">
+<!--new them-->
+<div class="card  p-3 border-radius-xl bg-white js-active" data-animation="FadeIn">
+    <h5 class="font-weight-bolder mb-0">New Author</h5>
+    <div class="">
+
+        <div class="row">
+            <div class="row" >
+                <div class="col-12 col-sm-4 mt-3">
+                    <label>Author photo</label>
+                    <div action="/file-upload" class="form-control dropzone dz-clickable" id="productImg">
+                        <div class="dz-default dz-message">
+                            <input class="dz-button" type="file" id="NewPhotoUpload" accept="image/png, image/jpeg" asp-for="Photo" style="display:none;"/>
+                            <label for="NewPhotoUpload" class="dz-button">Drop files here to upload</label>
+                        </div>
+                    </div>
+
+                    <div class="progress mt-3 mb-3" id="PicturePBClass" style="display: none" >
+                        <div id="PicturePB" class="progress-bar"   >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-sm-4 mt-3">
+                <label>Name</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                <input asp-for="Name" class=" form-control" data-val="true" data-val-required="Required field">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="col-12 mt-3">
+                <label>Biography</label>
+                <textarea class=" form-control" rows="5"asp-for="Biography" ></textarea>
+                <span asp-validation-for="Biography" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="button-row d-flex mt-4">
+            <button class="btn bg-gradient-dark ms-auto mb-0" type="submit" title="Send">Create</button>
+        </div>
+    </div>
+</div>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Dashboard/Author/NewAuthor.js" asp-append-version="true"></script>
+    <script src="~/js/Dashboard/Shared.js" asp-append-version="true"></script>
+}

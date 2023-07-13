@@ -1,0 +1,185 @@
+﻿
+
+<header>
+    <div class="container ">
+        <div class="row justify-content-between border-bottom">
+            
+            <div class="d-flex p-3">
+                <a class="dropdown-toggle text-decoration-none cursor-p" role="button" id="LanguageMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="LanguageMenu" id="dropdownList">
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <img
+                                alt="en" class="mx-sm-0 mx-md-1" src="~/img/assets/flag-en.png"> English</a></li>
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <img
+                                alt="en" class="mx-sm-0 mx-md-1" src="~/img/assets/flag-fr.png"> French</a></li>
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <img
+                                alt="en" class="mx-sm-0 mx-md-1" src="~/img/assets/flag-ar.png"> Arabic</a></li>
+                </ul>
+            </div>
+            <div class="d-flex py-3">
+                @if (!string.IsNullOrEmpty(_httpContextAccessor.HttpContext.Session.GetString("organizationName"))  && _httpContextAccessor.HttpContext.Session.GetString("organizationName") != "null")
+                {
+                    <a data-bs-toggle="tooltip" data-bs-placement="top" title="You are part of @_httpContextAccessor.HttpContext.Session.GetString("organizationName").Replace("\"", "")&#013;You can view all their books" target="_blank" href="/Home/Profile?id=@_httpContextAccessor.HttpContext.Session.GetString("organizationId")">@_httpContextAccessor.HttpContext.Session.GetString("organizationName").Replace("\"", "")</a>
+                }
+                else
+                {
+                    <span class="d-md-none">@User.Identity.Name</span>
+                }
+
+
+            </div>
+
+
+
+            <div class="py-3 d-flex">
+
+                @if (User.Identity.IsAuthenticated)
+                {
+
+
+                    <div class="d-flex">
+
+                        <a class="d-none  d-md-block dropdown-toggle cursor-p username " data-bs-toggle="dropdown"
+                           id="UserMenu"><i class="fas fa-user mx-1" style="font-weight: 500"></i> @User.Identity.Name</a>
+
+                        <a class="d-block d-md-none cursor-p   text-body " data-bs-toggle="dropdown"
+                           id="UserMenu"><i class="fa fa-bars"></i></a>
+
+                        <ul aria-labelledby="UserMenu" class="dropdown-menu" id="dropdown2List">
+                           
+                                @if (User.IsInRole("Administrator") | User.IsInRole("Editor") )
+                                {
+                                    <li>
+                                        <a class="nav-link dropdown-item btn-link  " data-toggle="dropdown2" asp-controller="Dashboard" asp-action="index" id="Dashboard">
+                                            Dashboard</a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                }
+                            
+                                <li>
+                                    <a class="nav-link dropdown-item btn-link " data-toggle="dropdown2" asp-controller="Home" asp-action="Profile"
+                                   id="profile">profile</a></li>
+                                <li>
+
+                                    @if (!string.IsNullOrEmpty(_httpContextAccessor.HttpContext.Session.GetString("organizationName"))  && _httpContextAccessor.HttpContext.Session.GetString("organizationName") != "null")
+                                    {
+                                        <a class="nav-link dropdown-item btn-link " data-toggle="dropdown2" asp-controller="Home" asp-action="Organization" id="orgDocument">@_httpContextAccessor.HttpContext.Session.GetString("organizationName").Replace("\"", "") documents</a>
+                                    }
+                                </li>
+                                
+                                <li>
+                                    @if (!User.IsInRole("Editor"))
+                                    {
+                                        <a class="nav-link dropdown-item btn-link " data-toggle="dropdown2" asp-controller="Home" asp-action="MyDocuments" id="myDocument">My documents</a>
+                                    }
+                                </li>
+                                <li>
+                                    @if (User.Identity.IsAuthenticated &&  !User.IsInRole("Editor"))
+                                    {
+                                        <a class="nav-link dropdown-item btn-link " data-toggle="dropdown2" asp-controller="Home" asp-action="MyWishlist" id="myWishlist">My Wishlist</a>
+                                    }
+                                </li>
+                                <li>
+
+                            <li>
+                                <a class="nav-link dropdown-item btn-link  " data-toggle="dropdown2" asp-controller="Account" asp-action="Logout" id="Dashboard">
+                                    Logout</a></li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <a class="d-block btn-link username" asp-action="Signup" asp-controller="Account">Signup</a>
+                    <span>&nbsp;&nbsp;</span>
+                    <a class="d-block btn-link username" asp-action="Login" asp-controller="Account">Login</a>
+
+                }
+
+                <a id="myCart" class="p1 mx-2 has-badge cursor-p " asp-controller="Home" asp-action="Cart">
+                    <i class="fa fa-shopping-cart"></i>
+                </a>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+    
+    
+    
+</header>
+<form asp-action="Search" method="post" id="SearchByTerm">
+
+<div class="container" id="search">
+    <div class="row m-auto">
+        <div class="col-12  col-md-3 my-auto text-center">
+            <a asp-controller="Home" asp-action="Index"><img class=" img-fluid logo" src="/img/assets/logo.png" alt=""/></a>
+        </div>
+
+        <div class="col-12 col-md-9 m-auto input-group  ">
+
+            
+            <input autocomplete="off" class="form-control dropdown-toggle btn-group" data-bs-toggle="dropdown"  aria-expanded="true"   type="text" name="term" id="txtTerm">
+            <ul class="dropdown-menu mt-2 height invisible" id="SearchSuggest" role="menu">
+            </ul>
+            <input type="hidden" name="termType" id="termType"/>
+            <button class="btn btnFikr ">Search</button>
+            <button type="button" class="btn " id="PopoverSearch"><i class="fa fa-cog"></i></button>
+        </div>
+    </div>
+    
+    <div id="PopoverContent" class="d-none" >
+        <div class="form-check">
+            <label class="form-check-label" for="SearchByTitle">
+            <input class="form-check-input" type="radio" name="termTypeC" id="SearchByTitle"  value="OriginalTitle" checked onchange="getValue(this)">
+                Search by title
+            </label>
+            
+        </div>
+        
+        <div class="form-check">
+            <label class="form-check-label" for="SearchByAuthor">
+                <input class="form-check-input" type="radio" name="termTypeC" id="SearchByAuthor" value="Author" onchange="getValue(this)">
+                Search by author
+            </label>
+            
+        </div>
+        
+        <div class="form-check">
+            <label class="form-check-label" for="SearchByYear">
+                <input class="form-check-input" type="radio" name="termTypeC" id="SearchByYear" value="PublicationDate" onchange="getValue(this)">
+                Search by year
+            </label>
+            
+        </div>
+        
+        <div class="form-check">
+            <label class="form-check-label" for="SearchByIsbn">
+                <input class="form-check-input" type="radio" name="termTypeC" id="SearchByIsbn" value="ISBN" onchange="getValue(this)">
+                Search by Isbn
+            </label>
+        </div>
+        
+        <div class="form-check">
+            <label class="form-check-label" for="SearchByISSN">
+                <input class="form-check-input" type="radio" name="termTypeC" id="SearchByISSN" value="ISSN" onchange="getValue(this)">
+                Search by Issn
+            </label>
+            
+        </div>
+        
+    </div>
+    
+    
+</div>
+</form>
+

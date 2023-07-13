@@ -1,0 +1,54 @@
+﻿@model Bookzone.Models.Entity.User.Users
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "_AccountLayout";
+}
+
+
+<div class="card card-plain">
+  <div class="card-header pb-0 text-left bg-transparent">
+    <div class="col-9 m-auto text-center">
+      <a asp-controller="Home" asp-action="Index"><img class=" img-fluid logo" src="/img/assets/logo.png" alt=""/></a>
+    </div>
+    <h3 class="font-weight-bolder text-warning text-gradient">Login</h3>
+    <p class="mb-0">Enter your email and password to sign in</p>
+  </div>
+  <div class="card-body">
+      <form method="post" asp-controller="Account" asp-action="Login">
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <label>Email</label>
+        <div class="input-group mb-3">
+          <input asp-for="Email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon"/>
+          <div class="input-group-text">
+            <span class="fas fa-envelope"></span>
+          </div>
+        </div>
+        
+        
+        <span asp-validation-for="Password" class="text-danger"></span>
+        <label>Password</label>
+        <a asp-controller="Account" asp-action="Reset" class="float-end text-sm">Forgot password?</a>
+        <div class="input-group mb-3">
+          <input asp-for="Password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon"/>
+          <div class="input-group-text">
+            <span class="fas fa-key"></span>
+          </div>
+        </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn bg-gradient-warning w-100 mt-4 mb-0">Sign in</button>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer text-center pt-0 px-lg-2 px-1">
+    <p class="mb-1 text-sm mx-auto">
+      Don't have an account?
+      <a asp-controller="Account" asp-action="Signup" class="text-warning  text-gradient font-weight-bold">Sign up</a>
+    </p>
+
+  </div>
+</div>
+
+
+

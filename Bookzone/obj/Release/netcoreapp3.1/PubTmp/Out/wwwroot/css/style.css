@@ -1,0 +1,768 @@
+
+@font-face {
+    font-family: 'poppinsbold';
+    src: url('../fonts/fonts-poppins-bold-webfont.woff2') format('woff2'),
+    url('../fonts/fonts-poppins-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'poppinslight';
+    src: url('../fonts/fonts-poppins-light-webfont.woff2') format('woff2'),
+    url('../fonts/fonts-poppins-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'poppinsmedium';
+    src: url('../fonts/fonts-poppins-medium-webfont.woff2') format('woff2'),
+    url('../fonts/fonts-poppins-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'poppins';
+    src: url('../fonts/fonts-poppins-regular-webfont.woff2') format('woff2'),
+    url('../fonts/fonts-poppins-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+
+}
+@font-face {
+    font-family: 'poppinssemibold';
+    src: url('../fonts/fonts-poppins-semibold-webfont.woff2') format('woff2'),
+    url('../fonts/fonts-poppins-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+
+}
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/fonts-icomoon.eot');
+    src: url('../fonts/fonts-icomoon.eot#iefix') format('embedded-opentype'),
+    url('../fonts/fonts-icomoon.woff2') format('woff2'),
+    url('../fonts/fonts-icomoon.woff') format('woff'),
+    url('../fonts/fonts-icomoon.ttf') format('truetype'),
+    url('../fonts/fonts-icomoon.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+html, body {width: auto!important; overflow-x: hidden!important}
+
+
+body{
+    font-family: 'poppinsmedium', sans-serif;
+    font-size: 16px;
+    background-color: #fbfcff;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: 'poppins', serif;
+}
+
+header{
+    font-size: 0.8rem;
+    color: #3c3d3d;
+    z-index: 1;
+
+}
+header a, header .dropdown-item{
+    font-size: 0.8rem;
+    color: #3c3d3d;
+}
+
+#search input{
+    background:  url(../img/assets/img-loop.png) no-repeat 98% center;
+}
+
+footer{
+    background-color: #2f2e2b !important;
+}
+
+.cursor-p{
+    cursor: pointer;
+}
+.username{
+    font-family: 'poppins', sans-serif;
+    color: #616164;
+
+}
+
+
+
+hr {
+    border-top: 1px solid rgba(156, 156, 161, 0.85);
+    margin: unset;
+    width: 60%;
+}
+
+
+.logo{
+    width: 80%;
+}
+
+.btnFikr {
+    background-color: #ecb43a;
+    color: #ffffff;
+    font-size: 0.9rem;
+    line-height: 1em;
+    display: inline-block;
+    text-transform: capitalize;
+    width: 25%;
+    border-radius: 0;
+}
+
+.btnFikr:hover{
+    text-decoration: none;
+    background-color: #f0f0f0;
+}
+
+.btnFikr:focus{
+    border-color: #ecb43a;
+    box-shadow: 0 0 0 0.2rem #ecb43a73;
+}
+
+
+
+
+
+.btnbook {
+    background-color: #ecb43a;
+    color: #ffffff;
+    font-size: 0.9rem;
+    line-height: 1em;
+    text-transform: capitalize;
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 1px;
+    transition: 300ms;
+}
+.btnbook:hover, .btnbook:focus{
+    text-decoration: none;
+    background-color: #f0f0f0;
+
+}
+
+.btnbook:disabled {
+    color: black;
+}
+.btnbook:disabled:hover {
+    color: darkorange;
+}
+
+
+.form-control:focus{
+    border-color: #ecb43a;
+    box-shadow: 0 0 0 0.2rem #ecb43a73;
+}
+.coverImage{
+    width: 92vw;
+    height: 19vw;
+    object-fit: cover;
+    object-position: 100% 46%;
+    filter: brightness(0.9) contrast(85%);
+}
+.CoverText{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    white-space: nowrap
+}
+
+
+#DocumentBrowser {
+    transform: translate(0%,-15%);
+}
+
+#DocumentBrowser button.active.nav-link{
+    background-color: #2f2e2b !important;
+    color: #ffffff;
+    border-color: transparent;
+
+}
+
+#DocumentBrowser button.nav-link{
+    color: #2f2e2b;
+    background-color: #f0f0f0;
+    padding: 0.8rem;
+}
+
+#DocumentBrowser .nav-tabs .nav-item .nav-link.active {
+    color: #0080FF;
+}
+
+
+#DocumentBrowser .tab-content .tab-pane {
+    background-color:  #f6f6f6;;
+    min-height: 200px;
+    height: auto;
+}
+#DocumentBrowser .content-tabs .nav-link {
+    padding: 0.7rem 1rem;
+}
+
+.parent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.flex-item{
+    flex: 1 0 26%;
+}
+
+.split-txt {
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    text-transform: capitalize;
+}
+.split-txt span {
+    padding: 0 1em;
+}
+.split-txt span:before, .split-txt span:after {
+    content: "";
+    height: 6px;
+    width: 6px;
+    background: #000;
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+}
+.split-txt span:before {
+    left: 0;
+}
+.split-txt span:after {
+    right: 0;
+}
+h2.split-txt:before, h2.split-txt:after {
+    content: "";
+    height: 0.01em;
+    width: 4em;
+    background: #000;
+    display: inline-block;
+    position: absolute;
+    top: 0.9rem;
+}
+h2.split-txt:before {
+    left: -29%;
+}
+h2.split-txt:after {
+    right: -29%;
+}
+
+
+
+.text-block {
+    position: absolute;
+    bottom: 0%;
+    right: 1%;
+    background-color: #000000;
+    color: white;
+    padding-left: 5vh;
+    padding-right: 2vh;
+    white-space: nowrap;
+}
+.text-block>span {
+    margin-right: 2.8rem;
+}
+
+
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 188px;
+    border: dashed;
+    border-color: transparent;}
+
+div.gallery:hover {
+    border: 3px solid rgb(236, 180, 58);
+}
+
+div.gallery img {
+    width: 100%;
+    height: 29vh;
+    border: dashed;
+    border-color: transparent;}
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+    color: #8b8585;
+    text-transform: capitalize;
+    border-top: 1px solid #ccc;
+    white-space: pre-wrap;
+}
+.owl-dot{
+    display: none;
+}
+
+
+.owl-prev {
+    width: 15px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    margin-left: -19px;
+    display: block !important;
+    border:0px solid black;
+}
+
+.owl-next {
+    width: 15px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    right: -25px;
+    display: block !important;
+    border:0px solid black;
+    margin-right: 8px;}
+.owl-prev i, .owl-next i {transform: scale(1,3); color: #ccc;}
+
+
+.gallery:hover a , .gallery:hover .desc {
+    color: rgb(236, 180, 58);
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+}
+
+.owl-nav button:focus{
+    outline: none;}
+.book-item {
+    margin-bottom: 35px;
+}
+.book-detail {
+    margin-bottom: 15px;
+    font-family: 'poppins', sans-serif;
+    color: #1a1a1d;
+}
+.book-title{
+    font-weight: bold;
+    font-size: x-large;
+}
+
+
+
+#BookMoreDetails .nav-tabs .nav-item.show .nav-link, #BookMoreDetails .nav-tabs .nav-link.active {
+    color: #3c3d3d;
+    background-color: #ecb43a;
+    border-color: transparent;
+}
+
+#BookMoreDetails .nav-tabs .nav-item.show .nav-link, #BookMoreDetails  .nav-tabs .nav-link {
+    background-color: transparent;
+    font-family: 'poppinsmedium', sans-serif;
+    font-size: 16px;
+    color: #858585;
+    text-align: center;
+    border: 1px solid #dedede;
+    border-radius: 0;
+    text-transform: initial;
+    width: 100%;
+}
+
+#BookMoreDetails .nav-item{
+    width: 22.6%;
+}
+
+
+#BookMoreDetails .nav-tabs .nav-item.show .nav-link, #BookMoreDetails .nav-tabs .nav-link.active {
+    color: #3c3d3d;
+    background-color: #ecb43a;
+    border-color: transparent;
+}
+
+#BookMoreDetails .nav-tabs .nav-item.show .nav-link, #BookMoreDetails  .nav-tabs .nav-link {
+    background-color: transparent;
+    font-family: 'poppinsmedium', sans-serif;
+    font-size: 16px;
+    color: #858585;
+    text-align: center;
+    border: 1px solid #dedede;
+    border-radius: 0;
+    text-transform: initial;
+    width: 100%;
+}
+
+#BookMoreDetails .nav-item{
+    width: 22.6%;
+}
+
+#BookMoreDetailsContent  {
+
+    margin: 10px 0;
+    border: 1px solid #dedede;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #25292d;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #b1b1b2;
+    border : none;
+}
+
+.next,.previous{
+    display: none;
+}
+
+.info-btn {
+    display: block;
+    box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.33);
+    border-radius: 1px;
+    border-bottom: solid 2px rgba(0, 0, 0, 0.40);
+    transition: 300ms;
+}
+.download:hover{
+    cursor: pointer;
+    transition: 400ms;
+
+}
+.download-q{
+    display: none;
+}
+
+.download:hover .download-q{
+    display: inline;
+    transition: 300ms;
+
+}
+
+.download-q a {
+    padding: 0.5em;
+    border-radius: 3px;
+    font-weight: 400;
+    font-size: 1rem;
+}
+.download-q a:hover{
+    background: #1e1e1e87;
+}
+.download:hover .down-hide{
+    display: none;
+}
+
+.p1[data-count]:after {
+    position: absolute;
+
+    top: 0.2%;
+    content: attr(data-count);
+    font-size: 70%;
+    padding: 0.2rem;
+    border-radius: 50%;
+    line-height: 0.5rem;
+    color: white;
+    background: #ecb43a;
+    text-align: center;
+
+}
+
+.product-deta {
+    margin-right: 70px
+}
+
+
+
+.pay-button {
+    border: none;
+    padding: 8px 15px;
+    margin: 20px 0px;
+    cursor: pointer;
+    background-color: #ecb43a;
+    color: #fff;
+    text-transform: capitalize;
+    border-radius: 10px;
+}
+
+.pay-button:hover {
+    text-decoration: none;
+    background-color: #f0f0f0;
+    color: black;
+    outline:none;
+}
+
+.pay-button:focus {
+    border-color: #ecb43a;
+    box-shadow: 0 0 0 0.2rem #ecb43a73;
+    outline:none;
+}
+
+
+.text-grey {
+    color: #7c7a7a
+}
+
+
+
+.book,
+.book-img {
+    width: 120px;
+    height: 180px;
+    border-radius: 5px
+}
+
+.book {
+    margin: 20px 15px 5px 15px
+}
+
+
+
+.gray {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    filter: grayscale(100%);
+    color: #E0E0E0
+}
+
+.gray .pay {
+    box-shadow: none
+}
+
+#tax {
+    border-top: 1px lightgray solid;
+    margin-top: 10px;
+    padding-top: 10px
+}
+
+
+
+#checkout {
+    float: left
+}
+
+#check-amt {
+    float: right
+}
+
+
+.border-top {
+    border-top: 1px solid #EEEEEE !important;
+    margin-top: 20px;
+    padding-top: 15px
+}
+
+
+.mt-100 {
+    margin-top: 50px
+}
+
+.product-wrapper,
+.product-img {
+    position: relative;
+}
+
+.mb-45 {
+    margin-bottom: 45px;}
+
+.product-action {
+    bottom: 0px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    transition: all 0.6s ease 0s
+}
+
+.product-wrapper {
+    border-radius: 10px;}
+
+.product-desc {
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 5px 4px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #8b8585;
+}
+
+.product-action-style {
+    background-color: #fff;
+    box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
+    display: inline-block;
+    padding: 16px 2px 12px
+}
+
+.product-action-style>a {
+    color: #979797;
+    line-height: 1;
+    padding: 0 21px;
+    position: relative
+}
+
+.product-action-style>a.action-plus {
+    font-size: 18px
+}
+
+.product-wrapper:hover .product-action  {
+    bottom: 20px;
+    opacity: 1;
+}
+.product-wrapper:hover .product-desc {
+    color: rgb(236, 180, 58);
+}
+.product-action-style a i:hover{
+    color: rgb(236, 180, 58);
+
+}
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1024px) {
+    .coverImage{
+        max-width: 100vw;
+        width: 109vh;
+        height: 21vh;
+    }
+    .h2{
+        font-size: 1.3rem;
+    }
+    #DocumentBrowser {
+        transform: translate(0%,-9.5%);
+    }
+    #DocumentBrowser button.nav-link{
+
+        padding: 0.6rem;
+    }
+}
+
+@media screen and (max-width: 1024px)  and (max-height: 878px) {
+    .coverImage{
+        max-width: 100vw;
+        width: 111vh;
+        height: 21vh;
+    }
+    .h2{
+        font-size: 1.3rem;
+    }
+    #DocumentBrowser {
+        transform: translate(0%,-9.5%);
+    }
+    #DocumentBrowser button.nav-link{
+
+        padding: 0.6rem;
+    }
+}
+
+@media screen and (max-width: 768px ) {
+    .coverImage{
+        max-width: 100vw;
+        width: 95vh;
+        height: 21vh;
+    }
+    .h2{
+        font-size: 1.3rem;
+    }
+    #DocumentBrowser {
+        transform: translate(0%,-21.2%);
+    }
+    #DocumentBrowser button.nav-link{
+
+        padding: 0.6rem;
+    }
+    #BookMoreDetails .nav-item {
+        width: 21.5%;
+    }
+}
+
+@media screen and (max-height: 991px)  and  (width: 768px){
+
+    #DocumentBrowser {
+        transform: translate(0%,-9.5%);
+    }
+
+}
+
+@media screen and (max-width: 480px ) {
+
+    hr{
+        width: 100%;
+    }
+    .btnFikr{
+        width: 30%;
+        position: relative;
+        left: 1em;
+    }
+    .coverImage{
+        max-width: 100vw;
+        width: 65vh;
+        height: 21vh;
+    }
+    .h2, h2.split-txt{
+        font-size: 1.2rem;
+    }
+
+    #DocumentBrowser .tab-content .tab-pane {
+        padding-left: 19%;
+    }
+    #DocumentBrowser {
+        transform: translate(0%,-12.3%);
+    }
+
+    #spliter {
+        transform: translate(0%,-8vh);
+    }
+    div.gallery{
+        margin-left: 21%;
+    }
+    .book-title{
+        font-size: large;
+    }
+    #BookMoreDetails .nav-item{
+        width: 50%;
+    }
+
+
+}
+
+@media screen  and  (width: 425px){
+    .h2, h2.split-txt{
+        font-size: 1.3rem;
+    }
+
+    #DocumentBrowser {
+        transform: translate(0%,-14.2%);
+    }
+
+
+}

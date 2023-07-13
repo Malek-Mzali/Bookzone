@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "_Layout";
+}
+
+
+<div class="d-flex  justify-content-center">
+    <div class="d-flex d-block p-5 p-md-3">
+        <div class="container-fluid d-inline-flex position-relative">
+            <img class="coverImage d-block" src="/img/assets/top-img.jpg" alt="">
+            <span class="m-auto d-block CoverText h2">Knowledge without boundaries</span>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex  justify-content-center" id="DocumentBrowser">
+    <div class="container">
+        <div class="extra-row">
+            <nav>
+                <div class="nav nav-tabs flex-column flex-sm-row" id="nav-tab" role="tablist">
+                    <button class="flex-sm-fill nav-item nav-link active rounded-0" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Books</button>
+                    <button class="flex-sm-fill nav-item nav-link rounded-0" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Journals</button>
+                </div>
+            </nav>
+            <div class="tab-content " id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="d-flex flex-row d-flex justify-content-around mb-3 parent" id="ThemeListBook">
+
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" >
+                    <div class="d-flex flex-row d-flex justify-content-around mb-3 parent" id="ThemeListJournal">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+<div class="d-flex justify-content-center mb-md-5" id="spliter">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="split-txt"><span>Books recently added</span></h2>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content: space-between" >
+    <div class="container" id="LastDocuments">
+    </div>
+</div>
+
+<script src="~/js/Home/Index/Index.js" asp-append-version="true"></script>
+<script src="~/plugins/OwlCarousel2/js/owl.carousel.min.js"></script>
+
+

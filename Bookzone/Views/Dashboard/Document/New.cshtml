@@ -1,0 +1,1146 @@
+﻿@{
+    ViewBag.Title = "New Document";
+    Layout = "_DashboardLayout";
+}
+
+@using System.Security.Claims
+@model Ebook.Models.Entity.Document.DocumentInfo
+
+<input type="hidden" id="txtRoleUser" value="@User.FindFirstValue(ClaimTypes.Role)"/>
+<input type="hidden" id="txtUserId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)"/>
+
+<div class="container-fluid py-4">
+<div class="row">
+<div class="col-11">
+<div class="multisteps-form mb-5">
+<!--progress bar-->
+<div class="row">
+    <div class="col-12 col-lg-8 mx-auto my-5">
+        <div class="multisteps-form__progress">
+            <button class="multisteps-form__progress-btn js-active" type="button" title="type">
+                <span>Type</span>
+            </button>
+            <button class="multisteps-form__progress-btn" type="button" title="data" id="data" disabled="disabled">Data</button>
+        </div>
+        
+    </div>
+</div>
+<!--form panels-->
+<div class="row text-center">
+<div class="col-12 col-lg-8 m-auto">
+<div class="multisteps-form__form mb-8" style="height: 410px;">
+<!--choose type-->
+<div class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" data-animation="FadeIn">
+    <h5 class="font-weight-bolder">Type</h5>
+    <div class="multisteps-form__content">
+        <div class="row mt-4">
+            <div class="col-md-4 col-sm-4">
+                <input type="radio" class="btn-check" id="btncheck1" name="TypeDocument" value="Database"  onchange="document.getElementById('nextdata').disabled = !this.checked;">
+                <label class="btn btn-lg btn-outline-secondary border-2 px-6 py-5" for="btncheck1">
+                    <i class="fa fa-database"></i>
+                </label>
+                <h6>Database</h6>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <input type="radio" class="btn-check" id="btncheck2" name="TypeDocument" value="Marc21"  onchange="document.getElementById('nextdata').disabled = !this.checked;" >
+                <label class="btn btn-lg btn-outline-secondary border-2 px-6 py-5" for="btncheck2">
+                    <i class="fa fa-file"></i>
+                </label>
+                <h6>Marc 21</h6>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <input type="radio" class="btn-check" id="btncheck3" name="TypeDocument" value="GoogleApi"   onchange="document.getElementById('nextdata').disabled = !this.checked;" >
+                <label class="btn btn-lg btn-outline-secondary border-2 px-6 py-5" for="btncheck3">
+                    <i class="fa fa-google"></i>
+                </label>
+                <h6>Google Api</h6>
+            </div>
+            
+
+        </div>
+        <div class="row">
+            <div class="button-row d-flex mt-4 col-12">
+                <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next" id="nextdata" disabled="disabled" onclick="document.getElementById('data').disabled = false;">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--data-->
+
+<div class="card multisteps-form__panel p-3 border-radius-xl bg-white" data-animation="FadeIn" >
+<h5 class="font-weight-bolder">Data</h5>
+<form id="newdocumentDatabase" method="post">
+    <div class="multisteps-form__content" id="Database" style="display: none">
+        <ul class="nav nav-tabs"  role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="required-tab" data-bs-toggle="tab" data-bs-target="#required" type="button" role="tab" aria-controls="home" aria-selected="true">Required</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="extra-tab" data-bs-toggle="tab" data-bs-target="#extra" type="button" role="tab" aria-controls="profile" aria-selected="false">Extra</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-tab" data-bs-toggle="tab" data-bs-target="#tab" type="button" role="tab" aria-controls="contact" aria-selected="false"></button>
+            </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="required" role="tabpanel" aria-labelledby="required-tab">
+                    <div class="row mt-3 mb-3" >
+                        <div class="col-sm-3">
+                            <label>Document cover</label>
+                            <div action="/file-upload" class="form-control dropzone dz-clickable productImg" id="">
+                                <div class="dz-default dz-message">
+                                    <input class="dz-button NewPhotoUpload" type="file" id="NewPhotoUpload1" accept="image/png, image/jpeg" asp-for="DocumentGroup.CoverPage" style="display:none;"/>
+                                    <label for="NewPhotoUpload1" class="dz-button">Drop files here to upload</label>
+                                </div>
+                            </div>
+
+                            <div class="progress mt-3 mb-3 PicturePBClass" id="" style="display: none" >
+                                <div id="" class="progress-bar PicturePB"   >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row  mb-3">
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Title</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <input asp-for="DocumentGroup.OriginalTitle" class="form-control" data-val="true" data-val-required="Required field" >
+                                <span asp-validation-for="DocumentGroup.OriginalTitle" class="text-danger"></span>
+                            </div>
+                        </div>
+                            
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Language</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <select class="form-control" asp-for="DocumentGroup.OriginalLanguage" data-val="true" data-val-required="Required field" >
+                                    <option selected="" disabled="" value="" >Select</option>
+                                    <option value="English">English</option>
+                                    <option value="French">French</option>
+                                    <option value="Arabic">Arabic</option>
+                                </select>
+                                <span asp-validation-for="DocumentGroup.OriginalLanguage" class="text-danger"></span>
+                            </div>
+                        </div>
+                           
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Price</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <input asp-for="DocumentGroup.Price" type="number" class="form-control" data-val="true" data-val-required="Required field" value="0">
+                                <span asp-validation-for="DocumentGroup.Price" class="text-danger"></span>
+                            </div>
+                        </div>
+                           
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Publication date</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <input class="form-control" asp-for="DocumentGroup.PublicationDate" type="number"  data-inputmask-alias="Publication's date" data-inputmask-inputformat="dd/mm/yyyy" data-val="true" data-val-required="Required field" >
+                                <span asp-validation-for="DocumentGroup.PublicationDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Document Type</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <select class="form-control txtDocumentType" asp-for="DocumentGroup.DocumentType" data-val="true" data-val-required="Required field" >
+                                <option selected="" disabled="" value="" >Select</option>
+                                    <option value="Ebook">Ebook</option>
+                                    <option value="Ejournal">Ejournal</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>AccessType</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <select class="form-control" asp-for="DocumentGroup.AccessType" data-val="true" data-val-required="Required field" >
+                                    <option value="Closed" selected>Closed</option>
+                                    <option value="Open">Open</option>
+                                    <option value="Hidden">Hidden</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Editor</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <select style="width: 100%" asp-for="DocumentGroup.IdEditor" class="form-control IdEditor" id="" data-val="true" data-val-required="Required field" ></select>
+                                <span asp-validation-for="DocumentGroup.IdEditor" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Collection</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <select style="width: 100%" asp-for="DocumentGroup.IdCollection"  class="form-control IdCollection" id="" data-val="true" data-val-required="Required field"></select>
+                                <span asp-validation-for="DocumentGroup.IdCollection" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Author</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <select style="width: 100%" asp-for="DocumentGroup.IdAuthor"  class="form-control IdAuthor" id="" data-val="true" data-val-required="Required field"></select>
+                                <span asp-validation-for="DocumentGroup.IdAuthor" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>File</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <input style="width: 100%" asp-for="DocumentGroup.File"  type="file" accept="application/pdf" class="form-control NewIdFile" id="" data-val="true" data-val-required="Required field">
+                                <span asp-validation-for="DocumentGroup.File" class="text-danger"></span>
+                                <div class="progress mt-3 mb-3 DocumentPBClass"  style="display: none">
+                                    <div  class="progress-bar DocumentPB">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Keywords</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                    <textarea  rows="4" asp-for="DocumentGroup.Keyword" class="form-control" data-val="true" data-val-required="Required field" ></textarea>
+                                    <span asp-validation-for="DocumentGroup.Keyword" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                                               
+                    </div>
+                        
+                </div>
+                <div class="tab-pane fade" id="extra" role="tabpanel" aria-labelledby="extra-tab">
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Doi</label>
+                                <input asp-for="DocumentGroup.Doi" class="form-control" >
+                                <span asp-validation-for="DocumentGroup.Doi" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Marc Record Number</label>
+                                <input asp-for="DocumentGroup.MarcRecordNumber" class="form-control"  >
+                                <span asp-validation-for="DocumentGroup.MarcRecordNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Titles Variants</label>
+                                <input asp-for="DocumentGroup.TitlesVariants" class="form-control" >
+                                <span asp-validation-for="DocumentGroup.TitlesVariants" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Subtitle</label>
+                                <input asp-for="DocumentGroup.Subtitle" class="form-control" >
+                                <span asp-validation-for="DocumentGroup.Subtitle" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Translator</label>
+                                <input asp-for="DocumentGroup.Translator" class="form-control" >
+                                <span asp-validation-for="DocumentGroup.Translator" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input asp-for="DocumentGroup.Country" class="form-control" >
+                                <span asp-validation-for="DocumentGroup.Country" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>State</label>
+                                <input asp-for="DocumentGroup.State" class="form-control" >
+                                <span asp-validation-for="DocumentGroup.State" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>PhysicalDescription</label>
+                                <input asp-for="DocumentGroup.PhysicalDescription"   class="form-control" >
+                                <span asp-validation-for="DocumentGroup.PhysicalDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>VolumeNb</label>
+                                <input asp-for="DocumentGroup.VolumeNb"  class="form-control" value="0" >
+                                <span asp-validation-for="DocumentGroup.VolumeNb" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Abstract</label>
+                                    <textarea rows="5" asp-for="DocumentGroup.Abstract" class="form-control"  ></textarea>
+                                    <span asp-validation-for="DocumentGroup.Abstract" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Notes</label>
+                                    <textarea rows="5" asp-for="DocumentGroup.Notes" class="form-control" ></textarea>
+                                    <span asp-validation-for="DocumentGroup.Notes" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab" role="tabpanel" aria-labelledby="tab-tab">
+                    <div class="row mt-3 Ebook" style="display: none">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Isbn</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <input asp-for="EbookGroup.Isbn"  class="form-control isbn" data-val="true" data-val-required="Required field" >
+                                <span asp-validation-for="EbookGroup.Isbn" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>EditionNum</label>
+                                <input asp-for="EbookGroup.EditionNum" class="form-control" >
+                                <span asp-validation-for="EbookGroup.EditionNum" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>EditionPlace</label>
+                                <input asp-for="EbookGroup.EditionPlace" class="form-control" >
+                                <span asp-validation-for="EbookGroup.EditionPlace" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Genre</label>
+                                <input asp-for="EbookGroup.Genre" class="form-control" >
+                                <span asp-validation-for="EbookGroup.Genre" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Category</label>
+                                <input asp-for="EbookGroup.Category" class="form-control" >
+                                <span asp-validation-for="EbookGroup.Category" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Pages</label>
+                                <input asp-for="EbookGroup.NbPages" class="form-control" value="0" >
+                                <span asp-validation-for="EbookGroup.NbPages" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row mt-3 Ejournal" style="display: none">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>ISSN</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <input asp-for="EjournalGroup.Issn"  class="form-control issn" data-val="true" data-val-required="Required field" >
+                                <span asp-validation-for="EjournalGroup.Issn" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Frequency</label>
+                                <input asp-for="EjournalGroup.Frequency"  class="form-control"  >
+                                <span asp-validation-for="EjournalGroup.Frequency" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>TotalIssuesNb</label>
+                                <input asp-for="EjournalGroup.TotalIssuesNb"  class="form-control"  value="0" >
+                                <span asp-validation-for="EjournalGroup.TotalIssuesNb" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>DateFirstIssue</label>
+                                <input asp-for="EjournalGroup.DateFirstIssue"  class="form-control"  >
+                                <span asp-validation-for="EjournalGroup.DateFirstIssue" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>JournalScope</label>
+                                <input asp-for="EjournalGroup.JournalScope" class="form-control" >
+                                <span asp-validation-for="EjournalGroup.JournalScope" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>ImpactFactor</label>
+                                <input asp-for="EjournalGroup.ImpactFactor" class="form-control" >
+                                <span asp-validation-for="EjournalGroup.ImpactFactor" class="text-danger"></span>
+                            </div>
+                        </div>
+                    
+                    </div>
+
+                </div>
+        <div class="row">
+            <div class="button-row d-flex mt-4 col-12">
+                <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
+                <button class="btn bg-gradient-dark ms-auto mb-0" type="submit">Create</button>
+            </div>
+        </div>
+        
+            </div>
+            
+    </div>
+</form>
+    
+<form id="newdocumentMarc" method="post">
+    <div class="multisteps-form__content" id="Marc21" style="display: none;">
+        <input type="file" style="display: none" id="MarcFile" accept="application/marc text/xml" hidden="hidden"/>
+        <div class="row mt-3 mb-3">
+
+            <div class="col-sm-12">
+                <select id="ListRecords" style="width: 100%">
+                    <option value="" disabled selected>Select a record</option>
+                </select>
+            </div>
+            <div class="col-sm-12 mt-3" id="RecordMarc" style="display: none">
+
+                <ul class="nav nav-tabs"  role="tablist" id="RecordMarcTabs">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="Marcrequired-tab" data-bs-toggle="tab" data-bs-target="#Marcrequired" type="button" role="tab" aria-controls="Marcrequired" aria-selected="true">Required</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="Marcextra-tab" data-bs-toggle="tab" data-bs-target="#Marcextra" type="button" role="tab" aria-controls="Marcextra" aria-selected="false">Extra</button>
+                </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="MarcType-tab" data-bs-toggle="tab" data-bs-target="#MarcType" type="button" role="tab" aria-controls="MarcType" aria-selected="false"></button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="Summary-tab" data-bs-toggle="tab" data-bs-target="#Summary" type="button" role="tab" aria-controls="Summary" aria-selected="false" style="display: none">Summary</button>
+                    </li>
+                    
+
+            </ul>
+                <div class="tab-content" id="myMarcContent">
+                <div class="tab-pane fade show active" id="Marcrequired" role="tabpanel" aria-labelledby="Marcrequired-tab">
+                    <div class="row mt-3 mb-3" >
+
+                        <div class="col-sm-3">
+                            <label>Document cover</label>
+                            <div action="/file-upload" class="form-control dropzone dz-clickable productImg" id="">
+                                <div class="dz-default dz-message">
+                                    <input class="dz-button NewPhotoUpload" type="file" id="NewPhotoUpload2" accept="image/png, image/jpeg" asp-for="DocumentGroup.CoverPage" style="display:none;"/>
+                                    <label for="NewPhotoUpload2" class="dz-button">Drop files here to upload</label>
+                                </div>
+                            </div>
+
+                            <div class="progress mt-3 mb-3 PicturePBClass" id="" style="display: none" >
+                                <div id="" class="progress-bar PicturePB"   >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Cover (Api)</label>
+                            <input type="checkbox" class="custom-checkbox " id="GoogleApiBtnCover1" name="CoverBtn"   >
+                            <label class="btn btn-lg btn-outline-secondary px-0 py-0" for="GoogleApiBtnCover1">
+                                <img class="img-thumbnail" id="MarcCoverApi" alt="" src="" height="250">
+                            </label>
+                                                                                        
+                        </div>
+                        
+
+                    </div>
+                    <div class="row  mb-3">
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Title</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <input asp-for="DocumentGroup.OriginalTitle" class="form-control" data-val="true" data-val-required="Required field" id="OriginalTitle">
+                                <span asp-validation-for="DocumentGroup.OriginalTitle" class="text-danger"></span>
+                            </div>
+                        </div>
+                                
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Language</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <select class="form-control" asp-for="DocumentGroup.OriginalLanguage" data-val="true" data-val-required="Required field" id="OriginalLanguage">
+                                <option selected="" disabled="" value="" >Select</option>
+                                    <option value="English">English</option>
+                                    <option value="French">French</option>
+                                    <option value="Arabic">Arabic</option>
+                                </select>
+                                <span asp-validation-for="DocumentGroup.OriginalLanguage" class="text-danger"></span>
+                            </div>
+                        </div>
+                               
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Price</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <input asp-for="DocumentGroup.Price" type="number" class="form-control" data-val="true" data-val-required="Required field" id="Price" value="0">
+                                <span asp-validation-for="DocumentGroup.Price" class="text-danger"></span>
+                            </div>
+                        </div>
+                               
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Publication date</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <input class="form-control" asp-for="DocumentGroup.PublicationDate" type="number"   data-val="true" data-val-required="Required field" id="PublicationDate">
+                                <span asp-validation-for="DocumentGroup.PublicationDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Document Type</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <select class="form-control txtDocumentType" asp-for="DocumentGroup.DocumentType" data-val="true" data-val-required="Required field" >
+                                <option selected="" disabled="" value="" >Select</option>
+                                    <option value="Ebook">Ebook</option>
+                                    <option value="Ejournal">Ejournal</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>AccessType</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <select class="form-control" asp-for="DocumentGroup.AccessType" data-val="true" data-val-required="Required field" id="AccessType">
+                                    <option value="Closed" selected>Closed</option>
+                                    <option value="Open">Open</option>
+                                    <option value="Hidden">Hidden</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Editor</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <select style="width: 100%" asp-for="DocumentGroup.IdEditor" class="form-control IdEditor" id="" data-val="true" data-val-required="Required field" ></select>
+                                <span asp-validation-for="DocumentGroup.IdEditor" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Collection</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <select style="width: 100%" asp-for="DocumentGroup.IdCollection"  class="form-control IdCollection" id="" data-val="true" data-val-required="Required field"></select>
+                                <span asp-validation-for="DocumentGroup.IdCollection" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Author</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <select style="width: 100%" asp-for="DocumentGroup.IdAuthor"  class="form-control IdAuthor" data-val="true" data-val-required="Required field"></select>
+                                <span asp-validation-for="DocumentGroup.IdAuthor" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>File</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <input style="width: 100%" asp-for="DocumentGroup.File"  type="file" accept="application/pdf" class="form-control NewIdFile" data-val="true" data-val-required="Required field">
+                                <span asp-validation-for="DocumentGroup.File" class="text-danger"></span>
+                                <div class="progress mt-3 mb-3 DocumentPBClass"  style="display: none">
+                                    <div  class="progress-bar DocumentPB">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Keywords</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                    <textarea  rows="4" asp-for="DocumentGroup.Keyword" class="form-control" data-val="true" data-val-required="Required field" id="Keyword"></textarea>
+                                    <span asp-validation-for="DocumentGroup.Keyword" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                                                   
+                    </div>
+                            
+                </div>
+                <div class="tab-pane fade" id="Marcextra" role="tabpanel" aria-labelledby="Marcextra-tab">
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Doi</label>
+                                <input asp-for="DocumentGroup.Doi" class="form-control" id="Doi">
+                                <span asp-validation-for="DocumentGroup.Doi" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Marc Record Number</label>
+                                <input asp-for="DocumentGroup.MarcRecordNumber" class="form-control"  id="MarcRecordNumber">
+                                <span asp-validation-for="DocumentGroup.MarcRecordNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Titles Variants</label>
+                                <input asp-for="DocumentGroup.TitlesVariants" class="form-control" id="TitlesVariants">
+                                <span asp-validation-for="DocumentGroup.TitlesVariants" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Subtitle</label>
+                                <input asp-for="DocumentGroup.Subtitle" class="form-control" id="Subtitle">
+                                <span asp-validation-for="DocumentGroup.Subtitle" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Translator</label>
+                                <input asp-for="DocumentGroup.Translator" class="form-control" id="Translator">
+                                <span asp-validation-for="DocumentGroup.Translator" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input asp-for="DocumentGroup.Country" class="form-control" id="Country">
+                                <span asp-validation-for="DocumentGroup.Country" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>State</label>
+                                <input asp-for="DocumentGroup.State" class="form-control" id="State">
+                                <span asp-validation-for="DocumentGroup.State" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>PhysicalDescription</label>
+                                <input asp-for="DocumentGroup.PhysicalDescription"   class="form-control" id="PhysicalDescription">
+                                <span asp-validation-for="DocumentGroup.PhysicalDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>VolumeNb</label>
+                                <input asp-for="DocumentGroup.VolumeNb"  class="form-control" value="0" id="VolumeNb">
+                                <span asp-validation-for="DocumentGroup.VolumeNb" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Abstract</label>
+                                    <textarea rows="5" asp-for="DocumentGroup.Abstract" class="form-control" id="Abstract" ></textarea>
+                                    <span asp-validation-for="DocumentGroup.Abstract" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Notes</label>
+                                    <textarea rows="5" asp-for="DocumentGroup.Notes" class="form-control" id="Notes" ></textarea>
+                                    <span asp-validation-for="DocumentGroup.Notes" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                            
+                    </div>
+                </div>
+                <div class="tab-pane" id="MarcType" role="tabpanel" aria-labelledby="MarcType-tab">
+                    <div  class="row mt-3 Ebook" style="display: none">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Isbn</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <input asp-for="EbookGroup.Isbn"  class="form-control isbn" data-val="true" data-val-required="Required field" id="Isbn" >
+                                <span asp-validation-for="EbookGroup.Isbn" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>EditionNum</label>
+                                <input asp-for="EbookGroup.EditionNum" class="form-control" id="EditionNum">
+                                <span asp-validation-for="EbookGroup.EditionNum" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>EditionPlace</label>
+                                <input asp-for="EbookGroup.EditionPlace" class="form-control" id="EditionPlace">
+                                <span asp-validation-for="EbookGroup.EditionPlace" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Genre</label>
+                                <input asp-for="EbookGroup.Genre" class="form-control" id="Genre">
+                                <span asp-validation-for="EbookGroup.Genre" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Category</label>
+                                <input asp-for="EbookGroup.Category" class="form-control" id="Category">
+                                <span asp-validation-for="EbookGroup.Category" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Pages</label>
+                                <input asp-for="EbookGroup.NbPages" class="form-control" value="0" id="NbPages">
+                                <span asp-validation-for="EbookGroup.NbPages" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row mt-3 Ejournal " style="display: none">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>ISSN</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <input asp-for="EjournalGroup.Issn"  class="form-control issn" data-val="true" data-val-required="Required field" id="Issn">
+                                <span asp-validation-for="EjournalGroup.Issn" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Frequency</label>
+                                <input asp-for="EjournalGroup.Frequency"  class="form-control"  id="Frequency">
+                                <span asp-validation-for="EjournalGroup.Frequency" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>TotalIssuesNb</label>
+                                <input asp-for="EjournalGroup.TotalIssuesNb"  class="form-control"  value="0" id="TotalIssuesNb">
+                                <span asp-validation-for="EjournalGroup.TotalIssuesNb" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>DateFirstIssue</label>
+                                <input asp-for="EjournalGroup.DateFirstIssue"  class="form-control"  id="DateFirstIssue">
+                                <span asp-validation-for="EjournalGroup.DateFirstIssue" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>JournalScope</label>
+                                <input asp-for="EjournalGroup.JournalScope" class="form-control" id="JournalScope">
+                                <span asp-validation-for="EjournalGroup.JournalScope" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>ImpactFactor</label>
+                                <input asp-for="EjournalGroup.ImpactFactor" class="form-control" id="ImpactFactor">
+                                <span asp-validation-for="EjournalGroup.ImpactFactor" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="Summary" role="tabpanel" aria-labelledby="Summary-tab">
+
+                </div>
+                
+                <div class="row">
+                    <div class="button-row d-flex mt-4 col-12">
+                        <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
+                        <button class="btn bg-gradient-dark ms-auto mb-0" type="submit">Create</button>
+                    </div>
+                </div>
+        
+            </div>
+            
+            </div>
+            
+            <div id="loader" class="lds-dual-ring hidden overlay">
+                <strong>Upload : </strong><span id="Upload"></span><br/>
+                @*
+                <strong>Records : </strong><span id="RecordNumber"></span><span id="RecordNumberTotal"></span>
+            *@
+            </div>
+
+
+        </div>
+
+
+    </div>
+    
+</form>
+
+
+<form id="newdocumentGoogleApi" method="post">
+<div class="multisteps-form__content" id="GoogleApi" style="display: none;">
+    <div class="row mt-3 mb-3 m-auto">
+        
+        <div class="col-sm-10">
+            <input class="form-control" id="SearchGoogleApi" placeholder="ISBN or Book Title"/>
+        </div>
+    <div class="col-sm-2">
+        <button type="button" id="SearchGoogleApiBtn" class="btn btn-dark">Search</button>
+    </div>
+    <div class="col-sm-12">
+        <select id="GoogleApiListRecords" style="width: 100%; display: none">
+            <option value="" disabled selected>Select a record</option>
+        </select>
+    </div>
+    
+        <div class="col-sm-12 mt-3" id="RecordGoogleApi" style="display: none">
+
+            <ul class="nav nav-tabs"  role="tablist" id="RecordGoogleApiTabs">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="GoogleApirequired-tab" data-bs-toggle="tab" data-bs-target="#GoogleApirequired" type="button" role="tab" aria-controls="GoogleApirequired" aria-selected="true">Required</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="GoogleApiextra-tab" data-bs-toggle="tab" data-bs-target="#GoogleApiextra" type="button" role="tab" aria-controls="GoogleApiextra" aria-selected="false">Extra</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="GoogleApiType-tab" data-bs-toggle="tab" data-bs-target="#GoogleApiType" type="button" role="tab" aria-controls="GoogleApiType" aria-selected="false"></button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myGoogleApiContent">
+            <div class="tab-pane fade show active" id="GoogleApirequired" role="tabpanel" aria-labelledby="GoogleApirequired-tab">
+                <div class="row mt-3 mb-3" >
+                    <div class="col-sm-3">
+                        <label>Document cover</label>
+                        <div action="/file-upload" class="form-control dropzone dz-clickable productImg" id="">
+                            <div class="dz-default dz-message">
+                                <input class="dz-button NewPhotoUpload" type="file" id="NewPhotoUpload3" accept="image/png, image/jpeg" asp-for="DocumentGroup.CoverPage" style="display:none;"/>
+                                <label for="NewPhotoUpload3" class="dz-button">Drop files here to upload</label>
+                            </div>
+                        </div>
+
+                        <div class="progress mt-3 mb-3 PicturePBClass" id="" style="display: none" >
+                            <div id="" class="progress-bar PicturePB"   >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label>Cover (Api)</label>
+                        <input type="checkbox" class="custom-checkbox " id="GoogleApiBtnCover2" name="CoverBtn"   >
+                        <label class="btn btn-lg btn-outline-secondary px-0 py-0" for="GoogleApiBtnCover2">
+                            <img class="img-thumbnail" id="GoogleApiCoverApi" alt="" src="" height="250">
+                        </label>
+                    </div>
+                    
+                    
+                </div>
+                <div class="row  mb-3">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Title</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                            <input asp-for="DocumentGroup.OriginalTitle" class="form-control" data-val="true" data-val-required="Required field" id="GoogleApiOriginalTitle">
+                            <span asp-validation-for="DocumentGroup.OriginalTitle" class="text-danger"></span>
+                        </div>
+                    </div>
+                            
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Language</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                            <select class="form-control" asp-for="DocumentGroup.OriginalLanguage" data-val="true" data-val-required="Required field" id="GoogleApiOriginalLanguage">
+                                <option selected="" disabled="" value="" >Select</option>
+                                <option value="English">English</option>
+                                <option value="French">French</option>
+                                <option value="Arabic">Arabic</option>
+                            </select>
+                            <span asp-validation-for="DocumentGroup.OriginalLanguage" class="text-danger"></span>
+                        </div>
+                    </div>
+                           
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Price</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                            <input asp-for="DocumentGroup.Price" type="number" class="form-control" data-val="true" data-val-required="Required field" id="GoogleApiPrice" value="0">
+                            <span asp-validation-for="DocumentGroup.Price" class="text-danger"></span>
+                        </div>
+                    </div>
+                           
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Publication date</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                            <input class="form-control" asp-for="DocumentGroup.PublicationDate" type="number"   data-val="true" data-val-required="Required field" id="GoogleApiPublicationDate">
+                            <span asp-validation-for="DocumentGroup.PublicationDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Document Type</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                            <select class="form-control txtDocumentType" asp-for="DocumentGroup.DocumentType" data-val="true" data-val-required="Required field" >
+                                <option selected="" disabled="" value="" >Select</option>
+                                <option value="Ebook">Ebook</option>
+                                <option value="Ejournal">Ejournal</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>AccessType</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                            <select class="form-control" asp-for="DocumentGroup.AccessType" data-val="true" data-val-required="Required field" id="GoogleApiAccessType">
+                                <option value="Closed" selected>Closed</option>
+                                <option value="Open">Open</option>
+                                <option value="Hidden">Hidden</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Editor</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                            <select style="width: 100%" asp-for="DocumentGroup.IdEditor" class="form-control IdEditor" id="" data-val="true" data-val-required="Required field" ></select>
+                            <span asp-validation-for="DocumentGroup.IdEditor" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Collection</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                            <select style="width: 100%" asp-for="DocumentGroup.IdCollection"  class="form-control IdCollection" id="" data-val="true" data-val-required="Required field"></select>
+                            <span asp-validation-for="DocumentGroup.IdCollection" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Author</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                            <select style="width: 100%" asp-for="DocumentGroup.IdAuthor"  class="form-control IdAuthor" data-val="true" data-val-required="Required field"></select>
+                            <span asp-validation-for="DocumentGroup.IdAuthor" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>File</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                            <input style="width: 100%" asp-for="DocumentGroup.File"  type="file" accept="application/pdf" class="form-control NewIdFile" data-val="true" data-val-required="Required field">
+                            <span asp-validation-for="DocumentGroup.File" class="text-danger"></span>
+                            <div class="progress mt-3 mb-3 DocumentPBClass"  style="display: none">
+                                <div  class="progress-bar DocumentPB">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Keywords</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                <textarea  rows="4" asp-for="DocumentGroup.Keyword" class="form-control" data-val="true" data-val-required="Required field" id="GoogleApiKeyword"></textarea>
+                                <span asp-validation-for="DocumentGroup.Keyword" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                                               
+                </div>
+                        
+            </div>
+            <div class="tab-pane fade" id="GoogleApiextra" role="tabpanel" aria-labelledby="GoogleApiextra-tab">
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Doi</label>
+                            <input asp-for="DocumentGroup.Doi" class="form-control" id="GoogleApiDoi">
+                            <span asp-validation-for="DocumentGroup.Doi" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Marc Record Number</label>
+                            <input asp-for="DocumentGroup.MarcRecordNumber" class="form-control"  id="GoogleApiMarcRecordNumber">
+                            <span asp-validation-for="DocumentGroup.MarcRecordNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Titles Variants</label>
+                            <input asp-for="DocumentGroup.TitlesVariants" class="form-control" id="GoogleApiTitlesVariants">
+                            <span asp-validation-for="DocumentGroup.TitlesVariants" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Subtitle</label>
+                            <input asp-for="DocumentGroup.Subtitle" class="form-control" id="GoogleApiSubtitle">
+                            <span asp-validation-for="DocumentGroup.Subtitle" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Translator</label>
+                            <input asp-for="DocumentGroup.Translator" class="form-control" id="GoogleApiTranslator">
+                            <span asp-validation-for="DocumentGroup.Translator" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input asp-for="DocumentGroup.Country" class="form-control" id="GoogleApiCountry">
+                            <span asp-validation-for="DocumentGroup.Country" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>State</label>
+                            <input asp-for="DocumentGroup.State" class="form-control" id="GoogleApiState">
+                            <span asp-validation-for="DocumentGroup.State" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>PhysicalDescription</label>
+                            <input asp-for="DocumentGroup.PhysicalDescription"   class="form-control" id="GoogleApiPhysicalDescription">
+                            <span asp-validation-for="DocumentGroup.PhysicalDescription" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>VolumeNb</label>
+                            <input asp-for="DocumentGroup.VolumeNb"  class="form-control" value="0" id="GoogleApiVolumeNb">
+                            <span asp-validation-for="DocumentGroup.VolumeNb" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Abstract</label>
+                                <textarea rows="5" asp-for="DocumentGroup.Abstract" class="form-control" id="GoogleApiAbstract" ></textarea>
+                                <span asp-validation-for="DocumentGroup.Abstract" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Notes</label>
+                                <textarea rows="5" asp-for="DocumentGroup.Notes" class="form-control" id="GoogleApiNotes" ></textarea>
+                                <span asp-validation-for="DocumentGroup.Notes" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                        
+                </div>
+            </div>
+            <div class="tab-pane" id="GoogleApiType" role="tabpanel" aria-labelledby="GoogleApiType-tab">
+                <div  class="row mt-3 Ebook" style="display: none">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Isbn</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                            <input asp-for="EbookGroup.Isbn"  class="form-control isbn" data-val="true" data-val-required="Required field" id="GoogleApiIsbn" >
+                            <span asp-validation-for="EbookGroup.Isbn" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>EditionNum</label>
+                            <input asp-for="EbookGroup.EditionNum" class="form-control" id="GoogleApiEditionNum">
+                            <span asp-validation-for="EbookGroup.EditionNum" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>EditionPlace</label>
+                            <input asp-for="EbookGroup.EditionPlace" class="form-control" id="GoogleApiEditionPlace">
+                            <span asp-validation-for="EbookGroup.EditionPlace" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Genre</label>
+                            <input asp-for="EbookGroup.Genre" class="form-control" id="GoogleApiGenre">
+                            <span asp-validation-for="EbookGroup.Genre" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <input asp-for="EbookGroup.Category" class="form-control" id="GoogleApiCategory">
+                            <span asp-validation-for="EbookGroup.Category" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Pages</label>
+                            <input asp-for="EbookGroup.NbPages" class="form-control" value="0" id="GoogleApiNbPages">
+                            <span asp-validation-for="EbookGroup.NbPages" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row mt-3 Ejournal " style="display: none">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>ISSN</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                            <input asp-for="EjournalGroup.Issn"  class="form-control issn" data-val="true" data-val-required="Required field" id="GoogleApiIssn">
+                            <span asp-validation-for="EjournalGroup.Issn" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Frequency</label>
+                            <input asp-for="EjournalGroup.Frequency"  class="form-control"  id="GoogleApiFrequency">
+                            <span asp-validation-for="EjournalGroup.Frequency" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>TotalIssuesNb</label>
+                            <input asp-for="EjournalGroup.TotalIssuesNb"  class="form-control"  value="0" id="GoogleApiTotalIssuesNb">
+                            <span asp-validation-for="EjournalGroup.TotalIssuesNb" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>DateFirstIssue</label>
+                            <input asp-for="EjournalGroup.DateFirstIssue"  class="form-control"  id="GoogleApiDateFirstIssue">
+                            <span asp-validation-for="EjournalGroup.DateFirstIssue" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>JournalScope</label>
+                            <input asp-for="EjournalGroup.JournalScope" class="form-control" id="GoogleApiJournalScope">
+                            <span asp-validation-for="EjournalGroup.JournalScope" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>ImpactFactor</label>
+                            <input asp-for="EjournalGroup.ImpactFactor" class="form-control" id="GoogleApiImpactFactor">
+                            <span asp-validation-for="EjournalGroup.ImpactFactor" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+            
+            <div class="row">
+                <div class="button-row d-flex mt-4 col-12">
+                    <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
+                    <button class="btn bg-gradient-dark ms-auto mb-0" type="submit">Create</button>
+                </div>
+            </div>
+    
+        </div>
+        
+</div>
+
+    </div>
+    
+</div>
+</form>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+@section Scripts{
+
+    <script src="~/Dashboard/js/multistep-form.js"></script>
+    <script src="~/js/Dashboard/Document/NewDocument.js" asp-append-version="true"></script>
+    <script src="~/js/Dashboard/Shared.js" asp-append-version="true"></script>
+
+}
+

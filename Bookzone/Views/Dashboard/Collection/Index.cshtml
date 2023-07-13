@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "Collections";
+    Layout = "_DashboardLayout";
+}
+
+@using System.Security.Claims
+@model Bookzone.Models.Entity.Collection.Collection
+
+<input type="hidden" id="txtRoleUser" value="@User.FindFirstValue(ClaimTypes.Role)"/>
+<input type="hidden" id="txtUserId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)"/>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Collections informations</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="CollectionList" class="table table-hover  nowrap dt-body-center">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>IdEditor</th>
+                <th>IdTheme</th>
+                <th>Title</th>
+                <th>ShortTitle</th>
+                <th>Description</th>
+                <th style="width: 5px;">Action</th>
+            </tr>
+            </thead>
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+
+@section Scripts{
+    <script src="~/js/datatables.min.js"></script>
+    <script src="~/js/Dashboard/Collection/CollectionList.js" asp-append-version="true"></script>
+    <script src="~/js/Dashboard/Shared.js" asp-append-version="true"></script>
+
+}
+
+
+<div class="modal fade" id="editCollection"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+<div class="modal-content">
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Collection</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+<form id="editCollectionform" method="post">
+<div class="card-body">
+<div class="row">
+<input id="txtId" type="hidden" asp-for="Id">
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Editor</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+            <select style="width: 100%" asp-for="IdEditor" class="form-control IdEditor" data-val="true" data-val-required="Required field" ></select>
+            <span asp-validation-for="IdEditor" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Theme</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+            <select style="width: 100%" asp-for="IdTheme" class="form-control" data-val="true" data-val-required="Required field" id="IdTheme"></select>
+            <span asp-validation-for="IdTheme" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+    
+        <div class="form-group">
+            <label>Title</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+            <input asp-for="Title" class="form-control" data-val="true" data-val-required="Required field" id="txtTitle">
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>ShortTitle</label>&nbsp;
+            <input asp-for="ShortTitle" class="form-control"  id="txtShortTitle">
+            <span asp-validation-for="ShortTitle" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Description</label>&nbsp;
+            <textarea rows="5" asp-for="Description" class="form-control"  id="txtDescription"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</div>
+
+
+        
+
+</div>
+
+
+
+<div class="card-footer text-right">
+    <button data-bs-dismiss="modal" type="button" aria-label="Close" class="btn btn-secondary">Cancel</button>
+    <button type="submit" class="btn btn-success">Save</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+

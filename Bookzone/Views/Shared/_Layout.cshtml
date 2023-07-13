@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <partial name="_styles"></partial>
+    <partial name="_ValidationScriptsPartial"></partial>
+</head>
+<body>
+<partial name="_Header"/>
+
+<main role="main" class="pb-5 mb-5">
+    @RenderBody()
+</main>
+
+<partial name="_Footer"/>
+
+@await Component.InvokeAsync("NToastNotify")
+<partial name="_scripts"></partial>
+@await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
+

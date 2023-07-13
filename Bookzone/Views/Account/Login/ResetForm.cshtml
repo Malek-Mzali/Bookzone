@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Reset Password";
+    Layout = "_AccountLayout";
+}
+@model string
+
+
+            <div class="card z-index-0 mt-sm-12 mt-9 mb-4">
+                <div class="card-header text-center pt-4 pb-1">
+                    <div class="col-9 m-auto text-center">
+                        <a asp-controller="Home" asp-action="Index"><img class=" img-fluid logo" src="/img/assets/logo.png" alt=""/></a>
+                    </div>
+                    
+                    <h4 class="font-weight-bolder mb-1">Reset password</h4>
+                </div>
+                <div class="card-body">
+                    <form role="form" asp-action="ResetForm" method="post">
+                        <div class="mb-3">
+                            <input name="code" type="text" class="form-control" placeholder="code" aria-label="code" required="required" value="@Model" readonly>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <input name="NewPassword" type="password" class="form-control" placeholder="New Password" aria-label="NewPassword" required="required">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn bg-gradient-dark btn-lg w-100 my-4 mb-2">Change</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+

@@ -1,0 +1,601 @@
+﻿@{
+    ViewBag.Title = "New User";
+    Layout = "_DashboardLayout";
+}
+
+@model Bookzone.Models.Entity.User.UserInfo
+
+<div class="container-fluid py-4">
+<div class="row">
+<div class="col-11">
+<div class="multisteps-form mb-5">
+<!--progress bar-->
+<div class="row">
+    <div class="col-12 col-lg-8 mx-auto my-5">
+        <div class="multisteps-form__progress">
+            <button class="multisteps-form__progress-btn js-active" type="button" title="User Info">
+                <span>New User</span>
+            </button>
+            <button class="multisteps-form__progress-btn" type="button" title="Address">Permission</button>
+            <button class="multisteps-form__progress-btn" type="button" title="Socials" id="profile" disabled="disabled">Profile</button>
+            <button class="multisteps-form__progress-btn" type="button" title="Profile">Picture</button>
+        </div>
+    </div>
+</div>
+<!--form panels-->
+<div class="row text-center">
+<div class="col-12 col-lg-8 m-auto">
+<form id="newuserform" method="post" class="multisteps-form__form mb-8" style="height: 410px;">
+<!--new user-->
+<div class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" data-animation="FadeIn">
+    <h5 class="font-weight-bolder mb-0">New User</h5>
+    <div class="multisteps-form__content">
+        <div class="row mt-3">
+            <div class="col-12 col-sm-6">
+                <label>Email</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                <input asp-for="UsersGroup.Email" class="multisteps-form__input form-control" type="email" data-val="true" data-val-required="Required field"  >
+                <span asp-validation-for="UsersGroup.Email" class="text-danger"></span>
+            </div>
+            <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                <label>Passsword</label><span style="color:red;">*</span>
+                <input asp-for="UsersGroup.Password" class="multisteps-form__input form-control"  data-val="true"  data-val-required="Required field"  >
+                <span asp-validation-for="UsersGroup.Password" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 col-sm-6">
+                <label>Phone</label><span style="color:red;">*</span>
+                <input asp-for="UsersGroup.Phone" class="multisteps-form__input form-control"  data-val="true"  data-val-required="Required field"  >
+                <span asp-validation-for="UsersGroup.Phone" class="text-danger"></span>
+            </div>
+            <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                <label>Country</label><span style="color:red;">*</span>
+                <select class="form-control select2 " data-val="true" data-val-required="Required field" asp-for="UsersGroup.Country"   data-placeholder="Select a Country"  >
+                        <option value="Select a Country" selected aria-readonly="true" disabled="disabled">Select a Country</option>
+                        <option value="Afganistan">Afghanistan</option>
+                        <option value="Albania">Albania</option>
+                        <option value="Algeria">Algeria</option>
+                        <option value="American Samoa">American Samoa</option>
+                        <option value="Andorra">Andorra</option>
+                        <option value="Angola">Angola</option>
+                        <option value="Anguilla">Anguilla</option>
+                        <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Armenia">Armenia</option>
+                        <option value="Aruba">Aruba</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Azerbaijan">Azerbaijan</option>
+                        <option value="Bahamas">Bahamas</option>
+                        <option value="Bahrain">Bahrain</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Barbados">Barbados</option>
+                        <option value="Belarus">Belarus</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Belize">Belize</option>
+                        <option value="Benin">Benin</option>
+                        <option value="Bermuda">Bermuda</option>
+                        <option value="Bhutan">Bhutan</option>
+                        <option value="Bolivia">Bolivia</option>
+                        <option value="Bonaire">Bonaire</option>
+                        <option value="Bosnia & Herzegovina">Bosnia & Herzegovina</option>
+                        <option value="Botswana">Botswana</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="British Indian Ocean Ter">British Indian Ocean Ter</option>
+                        <option value="Brunei">Brunei</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Burkina Faso">Burkina Faso</option>
+                        <option value="Burundi">Burundi</option>
+                        <option value="Cambodia">Cambodia</option>
+                        <option value="Cameroon">Cameroon</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Canary Islands">Canary Islands</option>
+                        <option value="Cape Verde">Cape Verde</option>
+                        <option value="Cayman Islands">Cayman Islands</option>
+                        <option value="Central African Republic">Central African Republic</option>
+                        <option value="Chad">Chad</option>
+                        <option value="Channel Islands">Channel Islands</option>
+                        <option value="Chile">Chile</option>
+                        <option value="China">China</option>
+                        <option value="Christmas Island">Christmas Island</option>
+                        <option value="Cocos Island">Cocos Island</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Comoros">Comoros</option>
+                        <option value="Congo">Congo</option>
+                        <option value="Cook Islands">Cook Islands</option>
+                        <option value="Costa Rica">Costa Rica</option>
+                        <option value="Cote DIvoire">Cote DIvoire</option>
+                        <option value="Croatia">Croatia</option>
+                        <option value="Cuba">Cuba</option>
+                        <option value="Curaco">Curacao</option>
+                        <option value="Cyprus">Cyprus</option>
+                        <option value="Czech Republic">Czech Republic</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Djibouti">Djibouti</option>
+                        <option value="Dominica">Dominica</option>
+                        <option value="Dominican Republic">Dominican Republic</option>
+                        <option value="East Timor">East Timor</option>
+                        <option value="Ecuador">Ecuador</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="El Salvador">El Salvador</option>
+                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                        <option value="Eritrea">Eritrea</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                        <option value="Falkland Islands">Falkland Islands</option>
+                        <option value="Faroe Islands">Faroe Islands</option>
+                        <option value="Fiji">Fiji</option>
+                        <option value="Finland">Finland</option>
+                        <option value="France">France</option>
+                        <option value="French Guiana">French Guiana</option>
+                        <option value="French Polynesia">French Polynesia</option>
+                        <option value="French Southern Ter">French Southern Ter</option>
+                        <option value="Gabon">Gabon</option>
+                        <option value="Gambia">Gambia</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Gibraltar">Gibraltar</option>
+                        <option value="Great Britain">Great Britain</option>
+                        <option value="Greece">Greece</option>
+                        <option value="Greenland">Greenland</option>
+                        <option value="Grenada">Grenada</option>
+                        <option value="Guadeloupe">Guadeloupe</option>
+                        <option value="Guam">Guam</option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Guinea">Guinea</option>
+                        <option value="Guyana">Guyana</option>
+                        <option value="Haiti">Haiti</option>
+                        <option value="Hawaii">Hawaii</option>
+                        <option value="Honduras">Honduras</option>
+                        <option value="Hong Kong">Hong Kong</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="Iceland">Iceland</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="India">India</option>
+                        <option value="Iran">Iran</option>
+                        <option value="Iraq">Iraq</option>
+                        <option value="Ireland">Ireland</option>
+                        <option value="Isle of Man">Isle of Man</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Kiribati">Kiribati</option>
+                        <option value="Korea North">Korea North</option>
+                        <option value="Korea Sout">Korea South</option>
+                        <option value="Kuwait">Kuwait</option>
+                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                        <option value="Laos">Laos</option>
+                        <option value="Latvia">Latvia</option>
+                        <option value="Lebanon">Lebanon</option>
+                        <option value="Lesotho">Lesotho</option>
+                        <option value="Liberia">Liberia</option>
+                        <option value="Libya">Libya</option>
+                        <option value="Liechtenstein">Liechtenstein</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Luxembourg">Luxembourg</option>
+                        <option value="Macau">Macau</option>
+                        <option value="Macedonia">Macedonia</option>
+                        <option value="Madagascar">Madagascar</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Malawi">Malawi</option>
+                        <option value="Maldives">Maldives</option>
+                        <option value="Mali">Mali</option>
+                        <option value="Malta">Malta</option>
+                        <option value="Marshall Islands">Marshall Islands</option>
+                        <option value="Martinique">Martinique</option>
+                        <option value="Mauritania">Mauritania</option>
+                        <option value="Mauritius">Mauritius</option>
+                        <option value="Mayotte">Mayotte</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Midway Islands">Midway Islands</option>
+                        <option value="Moldova">Moldova</option>
+                        <option value="Monaco">Monaco</option>
+                        <option value="Mongolia">Mongolia</option>
+                        <option value="Montserrat">Montserrat</option>
+                        <option value="Morocco">Morocco</option>
+                        <option value="Mozambique">Mozambique</option>
+                        <option value="Myanmar">Myanmar</option>
+                        <option value="Nambia">Nambia</option>
+                        <option value="Nauru">Nauru</option>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Netherland Antilles">Netherland Antilles</option>
+                        <option value="Netherlands">Netherlands (Holland, Europe)</option>
+                        <option value="Nevis">Nevis</option>
+                        <option value="New Caledonia">New Caledonia</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Nicaragua">Nicaragua</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="Niue">Niue</option>
+                        <option value="Norfolk Island">Norfolk Island</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Oman">Oman</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Palau Island">Palau Island</option>
+                        <option value="Palestine">Palestine</option>
+                        <option value="Panama">Panama</option>
+                        <option value="Papua New Guinea">Papua New Guinea</option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Peru">Peru</option>
+                        <option value="Phillipines">Philippines</option>
+                        <option value="Pitcairn Island">Pitcairn Island</option>
+                        <option value="Poland">Poland</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Puerto Rico">Puerto Rico</option>
+                        <option value="Qatar">Qatar</option>
+                        <option value="Republic of Montenegro">Republic of Montenegro</option>
+                        <option value="Republic of Serbia">Republic of Serbia</option>
+                        <option value="Reunion">Reunion</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="St Barthelemy">St Barthelemy</option>
+                        <option value="St Eustatius">St Eustatius</option>
+                        <option value="St Helena">St Helena</option>
+                        <option value="St Kitts-Nevis">St Kitts-Nevis</option>
+                        <option value="St Lucia">St Lucia</option>
+                        <option value="St Maarten">St Maarten</option>
+                        <option value="St Pierre & Miquelon">St Pierre & Miquelon</option>
+                        <option value="St Vincent & Grenadines">St Vincent & Grenadines</option>
+                        <option value="Saipan">Saipan</option>
+                        <option value="Samoa">Samoa</option>
+                        <option value="Samoa American">Samoa American</option>
+                        <option value="San Marino">San Marino</option>
+                        <option value="Sao Tome & Principe">Sao Tome & Principe</option>
+                        <option value="Saudi Arabia">Saudi Arabia</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Seychelles">Seychelles</option>
+                        <option value="Sierra Leone">Sierra Leone</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Slovakia">Slovakia</option>
+                        <option value="Slovenia">Slovenia</option>
+                        <option value="Solomon Islands">Solomon Islands</option>
+                        <option value="Somalia">Somalia</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                        <option value="Sudan">Sudan</option>
+                        <option value="Suriname">Suriname</option>
+                        <option value="Swaziland">Swaziland</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="Syria">Syria</option>
+                        <option value="Tahiti">Tahiti</option>
+                        <option value="Taiwan">Taiwan</option>
+                        <option value="Tajikistan">Tajikistan</option>
+                        <option value="Tanzania">Tanzania</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Togo">Togo</option>
+                        <option value="Tokelau">Tokelau</option>
+                        <option value="Tonga">Tonga</option>
+                        <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                        <option value="Tunisia">Tunisia</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Turkmenistan">Turkmenistan</option>
+                        <option value="Turks & Caicos Is">Turks & Caicos Is</option>
+                        <option value="Tuvalu">Tuvalu</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Ukraine">Ukraine</option>
+                        <option value="United Arab Erimates">United Arab Emirates</option>
+                        <option value="United States of America">United States of America</option>
+                        <option value="Uraguay">Uruguay</option>
+                        <option value="Uzbekistan">Uzbekistan</option>
+                        <option value="Vanuatu">Vanuatu</option>
+                        <option value="Vatican City State">Vatican City State</option>
+                        <option value="Venezuela">Venezuela</option>
+                        <option value="Vietnam">Vietnam</option>
+                        <option value="Virgin Islands (Brit)">Virgin Islands (Brit)</option>
+                        <option value="Virgin Islands (USA)">Virgin Islands (USA)</option>
+                        <option value="Wake Island">Wake Island</option>
+                        <option value="Wallis & Futana Is">Wallis & Futana Is</option>
+                        <option value="Yemen">Yemen</option>
+                        <option value="Zaire">Zaire</option>
+                        <option value="Zambia">Zambia</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                        </select>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 col-sm-6">
+                <label>Address</label><span style="color:red;">*</span>
+                <input asp-for="UsersGroup.Address" class="multisteps-form__input form-control"  data-val="true"  data-val-required="Required field"  >
+                <span asp-validation-for="UsersGroup.Address" class="text-danger"></span>
+            </div>
+            <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                <label>Postal code</label><span style="color:red;">*</span>
+                <input asp-for="UsersGroup.PostalCode" class="multisteps-form__input form-control"  data-val="true"  data-val-required="Required field"  >
+                <span asp-validation-for="UsersGroup.PostalCode" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="button-row d-flex mt-4">
+            <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</button>
+        </div>
+    </div>
+</div>
+<!--permission-->
+<div class="card multisteps-form__panel p-3 border-radius-xl bg-white" data-animation="FadeIn">
+    <h5 class="font-weight-bolder">Permission</h5>
+    <div class="multisteps-form__content">
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="row mt-4">
+                    <div class="col-sm-3 ms-auto">
+                        <input type="radio" class="btn-check" id="btncheck1" name="UsersGroup.Role" value="Administrator" asp-for="UsersGroup.Role"  onchange="document.getElementById('nextprofile').disabled = !this.checked;">
+                        <label class="btn btn-lg btn-outline-secondary border-2 px-6 py-5" for="btncheck1">
+                            <svg class="text-dark" width="20px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>Administrator</title>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-2020.000000, -442.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g transform="translate(304.000000, 151.000000)">
+                                                <polygon class="color-background" opacity="0.596981957" points="18.0883333 15.7316667 11.1783333 8.82166667 13.3333333 6.66666667 6.66666667 0 0 6.66666667 6.66666667 13.3333333 8.82166667 11.1783333 15.315 17.6716667"></polygon>
+                                                <path class="color-background" d="M31.5666667,23.2333333 C31.0516667,23.2933333 30.53,23.3333333 30,23.3333333 C29.4916667,23.3333333 28.9866667,23.3033333 28.48,23.245 L22.4116667,30.7433333 L29.9416667,38.2733333 C32.2433333,40.575 35.9733333,40.575 38.275,38.2733333 L38.275,38.2733333 C40.5766667,35.9716667 40.5766667,32.2416667 38.275,29.94 L31.5666667,23.2333333 Z" opacity="0.596981957"></path>
+                                                <path class="color-background" d="M33.785,11.285 L28.715,6.215 L34.0616667,0.868333333 C32.82,0.315 31.4483333,0 30,0 C24.4766667,0 20,4.47666667 20,10 C20,10.99 20.1483333,11.9433333 20.4166667,12.8466667 L2.435,27.3966667 C0.95,28.7083333 0.0633333333,30.595 0.00333333333,32.5733333 C-0.0583333333,34.5533333 0.71,36.4916667 2.11,37.89 C3.47,39.2516667 5.27833333,40 7.20166667,40 C9.26666667,40 11.2366667,39.1133333 12.6033333,37.565 L27.1533333,19.5833333 C28.0566667,19.8516667 29.01,20 30,20 C35.5233333,20 40,15.5233333 40,10 C40,8.55166667 39.685,7.18 39.1316667,5.93666667 L33.785,11.285 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </label>
+                        <h6>Administrator</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="radio" class="btn-check" id="btncheck2" name="UsersGroup.Role" value="Organization"  asp-for="UsersGroup.Role" onchange="document.getElementById('nextprofile').disabled = !this.checked;">
+                        <label class="btn btn-lg btn-outline-secondary border-2 px-6 py-5" for="btncheck2">
+                            <svg class="text-dark" width="20px" height="20px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>box-3d-50</title>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-2319.000000, -291.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g transform="translate(603.000000, 0.000000)">
+                                                <path class="color-background" d="M22.7597136,19.3090182 L38.8987031,11.2395234 C39.3926816,10.9925342 39.592906,10.3918611 39.3459167,9.89788265 C39.249157,9.70436312 39.0922432,9.5474453 38.8987261,9.45068056 L20.2741875,0.1378125 L20.2741875,0.1378125 C19.905375,-0.04725 19.469625,-0.04725 19.0995,0.1378125 L3.1011696,8.13815822 C2.60720568,8.38517662 2.40701679,8.98586148 2.6540352,9.4798254 C2.75080129,9.67332903 2.90771305,9.83023153 3.10122239,9.9269862 L21.8652864,19.3090182 C22.1468139,19.4497819 22.4781861,19.4497819 22.7597136,19.3090182 Z"></path>
+                                                <path class="color-background" d="M23.625,22.429159 L23.625,39.8805372 C23.625,40.4328219 24.0727153,40.8805372 24.625,40.8805372 C24.7802551,40.8805372 24.9333778,40.8443874 25.0722402,40.7749511 L41.2741875,32.673375 L41.2741875,32.673375 C41.719125,32.4515625 42,31.9974375 42,31.5 L42,14.241659 C42,13.6893742 41.5522847,13.241659 41,13.241659 C40.8447549,13.241659 40.6916418,13.2778041 40.5527864,13.3472318 L24.1777864,21.5347318 C23.8390024,21.7041238 23.625,22.0503869 23.625,22.429159 Z" opacity="0.7"></path>
+                                                <path class="color-background" d="M20.4472136,21.5347318 L1.4472136,12.0347318 C0.953235098,11.7877425 0.352562058,11.9879669 0.105572809,12.4819454 C0.0361450918,12.6208008 6.47121774e-16,12.7739139 0,12.929159 L0,30.1875 L0,30.1875 C0,30.6849375 0.280875,31.1390625 0.7258125,31.3621875 L19.5528096,40.7750766 C20.0467945,41.0220531 20.6474623,40.8218132 20.8944388,40.3278283 C20.963859,40.1889789 21,40.0358742 21,39.8806379 L21,22.429159 C21,22.0503869 20.7859976,21.7041238 20.4472136,21.5347318 Z" opacity="0.7"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </label>
+                        <h6>Organization</h6>
+                    </div>
+                    <div class="col-sm-3 me-auto">
+                        <input type="radio" class="btn-check" id="btncheck3" name="UsersGroup.Role" value="Editor" asp-for="UsersGroup.Role" onchange="document.getElementById('nextprofile').disabled = !this.checked;">
+                        <label class="btn btn-lg btn-outline-secondary border-2 px-6 py-5" for="btncheck3">
+                            <svg class="text-dark" width="20px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>Editor</title>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-1720.000000, -592.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                        <g transform="translate(1716.000000, 291.000000)">
+                                            <g transform="translate(4.000000, 301.000000)">
+                                                <path class="color-background" d="M39.3,0.706666667 C38.9660984,0.370464027 38.5048767,0.192278529 38.0316667,0.216666667 C14.6516667,1.43666667 6.015,22.2633333 5.93166667,22.4733333 C5.68236407,23.0926189 5.82664679,23.8009159 6.29833333,24.2733333 L15.7266667,33.7016667 C16.2013871,34.1756798 16.9140329,34.3188658 17.535,34.065 C17.7433333,33.98 38.4583333,25.2466667 39.7816667,1.97666667 C39.8087196,1.50414529 39.6335979,1.04240574 39.3,0.706666667 Z M25.69,19.0233333 C24.7367525,19.9768687 23.3029475,20.2622391 22.0572426,19.7463614 C20.8115377,19.2304837 19.9992882,18.0149658 19.9992882,16.6666667 C19.9992882,15.3183676 20.8115377,14.1028496 22.0572426,13.5869719 C23.3029475,13.0710943 24.7367525,13.3564646 25.69,14.31 C26.9912731,15.6116662 26.9912731,17.7216672 25.69,19.0233333 L25.69,19.0233333 Z"></path>
+                                                <path class="color-background" d="M1.855,31.4066667 C3.05106558,30.2024182 4.79973884,29.7296005 6.43969145,30.1670277 C8.07964407,30.6044549 9.36054508,31.8853559 9.7979723,33.5253085 C10.2353995,35.1652612 9.76258177,36.9139344 8.55833333,38.11 C6.70666667,39.9616667 0,40 0,40 C0,40 0,33.2566667 1.855,31.4066667 Z"></path>
+                                                <path class="color-background" d="M17.2616667,3.90166667 C12.4943643,3.07192755 7.62174065,4.61673894 4.20333333,8.04166667 C3.31200265,8.94126033 2.53706177,9.94913142 1.89666667,11.0416667 C1.5109569,11.6966059 1.61721591,12.5295394 2.155,13.0666667 L5.47,16.3833333 C8.55036617,11.4946947 12.5559074,7.25476565 17.2616667,3.90166667 L17.2616667,3.90166667 Z" opacity="0.598539807"></path>
+                                                <path class="color-background" d="M36.0983333,22.7383333 C36.9280725,27.5056357 35.3832611,32.3782594 31.9583333,35.7966667 C31.0587397,36.6879974 30.0508686,37.4629382 28.9583333,38.1033333 C28.3033941,38.4890431 27.4704606,38.3827841 26.9333333,37.845 L23.6166667,34.53 C28.5053053,31.4496338 32.7452344,27.4440926 36.0983333,22.7383333 L36.0983333,22.7383333 Z" opacity="0.598539807"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </label>
+                        <h6>Editor</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="radio" class="btn-check" id="btncheck4" name="UsersGroup.Role" value="Individual"  asp-for="UsersGroup.Role" onchange="document.getElementById('nextprofile').disabled = !this.checked;">
+                        <label class="btn btn-lg btn-outline-secondary border-2 px-6 py-5" for="btncheck4">
+                            <i class="fa fa-user"></i>
+                        </label>
+                        <h6>Individual</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="button-row d-flex mt-4 col-12">
+                <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
+                <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next" id="nextprofile" disabled="disabled" onclick="document.getElementById('profile').disabled = false;">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--profiles-->
+<div class="card multisteps-form__panel p-3 border-radius-xl bg-white" data-animation="FadeIn">
+    <div id="AdministratorPf" style="display:none;">
+        <h5 class="font-weight-bolder mb-0 ">Profile Administrator</h5>
+        <div class="multisteps-form__content">
+            <div class="col-12">
+                <label>Website</label><span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                <input class="multisteps-form__input form-control" type="text" asp-for="AdministratorGroup.Website"data-val="true" data-val-required="Required field">
+                <span asp-validation-for="AdministratorGroup.Website" class="text-danger"></span>
+            </div>
+            <div class="col-12 mt-3">
+                <label>About</label>
+                <textarea class="multisteps-form__textarea form-control" rows="5"asp-for="AdministratorGroup.About" ></textarea>
+                <span asp-validation-for="AdministratorGroup.About" class="text-danger"></span>
+            </div>
+            <div class="button-row d-flex mt-4">
+                <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</button>
+            </div>
+        </div>
+    </div>
+    <div id="IndividualPf" style="display:none;">
+        <h5 class="font-weight-bolder mb-0 ">Profile Individual</h5>
+        <div class="multisteps-form__content">
+            <div class="row mt-3">
+                <div class="col-12 col-sm-6">
+                    <label>First name</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                    <input class="multisteps-form__input form-control" asp-for="IndividualGroup.Firstname" data-val="true" data-val-required="Required field">
+                    <span asp-validation-for="IndividualGroup.Firstname" class="text-danger"></span>
+
+                </div>
+                <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                    <label>Last name</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                    <input class="multisteps-form__input form-control" asp-for="IndividualGroup.Lastname" data-val="true" data-val-required="Required field">
+                    <span asp-validation-for="IndividualGroup.Lastname" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 col-sm-6">
+                    <label>Gender</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                    <select class="multisteps-form__input form-control" asp-for="IndividualGroup.Gender" data-val="true" data-val-required="Required field"  >
+                        <option value="" selected="" hidden="" disabled="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                    <label>Date of birth</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true" ></span>
+                    <input class="form-control" asp-for="IndividualGroup.DateofBirth" type="date" data-inputmask-alias="Date of Birth" data-inputmask-inputformat="dd/mm/yyyy" data-val="true" data-val-required="Required field" >
+                    <span asp-validation-for="IndividualGroup.DateofBirth" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 col-sm-6">
+                    <label>Profession</label>&nbsp
+                    <input class="multisteps-form__input form-control" asp-for="IndividualGroup.Profession" >
+                    <span asp-validation-for="IndividualGroup.Profession" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                    <label>Organization</label>
+                    <input class="multisteps-form__input form-control" asp-for="IndividualGroup.Organization"  >
+                    <span asp-validation-for="IndividualGroup.Organization" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="button-row d-flex mt-4">
+                <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</button>
+            </div>
+        </div>
+    </div>
+    <div id="EditorPf" style="display:none;">
+        <h5 class="font-weight-bolder mb-0 ">Profile Editor</h5>
+        <div class="multisteps-form__content">
+            <div class="row mt-3">
+                <div class="col-12 col-sm-6">
+                    <label>Name</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                    <input class="multisteps-form__input form-control" asp-for="EditorGroup.Name" data-val="true" data-val-required="Required field">
+                    <span asp-validation-for="EditorGroup.Name" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                    <label>City</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                    <input class="multisteps-form__input form-control" asp-for="EditorGroup.City" data-val="true" data-val-required="Required field">
+                    <span asp-validation-for="EditorGroup.City" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                
+                <div class="col-12 col-sm-6">
+                    <label>Website</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                    <input class="multisteps-form__input form-control" asp-for="EditorGroup.Website" data-val="true" data-val-required="Required field">
+                    <span asp-validation-for="EditorGroup.Website" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label>Multiplyer</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                    <input class="multisteps-form__input form-control" asp-for="EditorGroup.Multiplyer" data-val="true" data-val-required="Required field">
+                    <span asp-validation-for="EditorGroup.Multiplyer" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 mt-3">
+                    <label>About</label>
+                    <textarea class="multisteps-form__textarea form-control" rows="5"asp-for="EditorGroup.About" ></textarea>
+                    <span asp-validation-for="EditorGroup.About" class="text-danger"></span>
+                </div>
+                
+
+                <div class="button-row d-flex mt-4">
+                    <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="OrganizationPf" style="display:none;">
+        <h5 class="font-weight-bolder mb-0 ">Profile Organization</h5>
+        <div class="multisteps-form__content">
+            <div class="row mt-3">
+                <div class="col-12 col-sm-6">
+                    <label>Name</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                    <input class="multisteps-form__input form-control" asp-for="OrganizationGroup.Name" data-val="true" data-val-required="Required field">
+                    <span asp-validation-for="OrganizationGroup.Name" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                    <label>Short name</label>&nbsp;
+                    <input class="multisteps-form__input form-control" asp-for="OrganizationGroup.ShortName">
+                    <span asp-validation-for="OrganizationGroup.ShortName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                
+                <div class="col-12 col-sm-6">
+                    <label>Website</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                    <input class="multisteps-form__input form-control" asp-for="OrganizationGroup.Website" data-val="true" data-val-required="Required field">
+                    <span asp-validation-for="OrganizationGroup.Website" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label>Type</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                    <input class="multisteps-form__input form-control" asp-for="OrganizationGroup.Type" data-val="true" data-val-required="Required field">
+                    <span asp-validation-for="OrganizationGroup.Type" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 col-sm-6">
+                    <label>Ip address</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                    <textarea class="multisteps-form__textarea form-control" rows="5" asp-for="OrganizationGroup.IpAdress" data-val="true" data-val-required="Required field"></textarea>
+                    <span asp-validation-for="OrganizationGroup.IpAdress" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <label>About</label>
+                    <textarea class="multisteps-form__textarea form-control" rows="5" asp-for="OrganizationGroup.About" ></textarea>
+                    <span asp-validation-for="OrganizationGroup.About" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="button-row d-flex mt-4">
+                <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="button" title="Next">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--extra -->
+<div class="card multisteps-form__panel p-3 border-radius-xl bg-white h-100" data-animation="FadeIn">
+    <h5 class="font-weight-bolder">Picture</h5>
+    <div class="multisteps-form__content mt-3">
+        <div class="row">
+            <div class="col-sm-12">
+                <label>Profile picture</label>
+                <div action="/file-upload" class="form-control dropzone dz-clickable" id="productImg">
+                    <div class="dz-default dz-message">
+                        <input class="dz-button" type="file" id="NewPhotoUpload" accept="image/png, image/jpeg" asp-for="UsersGroup.Photo" style="display:none;"/>
+                        <label for="NewPhotoUpload" class="dz-button">Drop files here to upload</label>
+                    </div>
+                </div>
+                <div class="progress mt-3 mb-3" id="PicturePBClass" style="display: none" >
+                    <div id="PicturePB" class="progress-bar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-row d-flex mt-4">
+            <button class="btn bg-gradient-light mb-0 js-btn-prev" type="button" title="Prev">Prev</button>
+            <button class="btn bg-gradient-dark ms-auto mb-0" type="submit" title="Send">Create</button>
+        </div>
+    </div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+@section Scripts{
+    <script src="~/Dashboard/js/multistep-form.js"></script>
+    <script src="~/js/Dashboard/User/NewUser.js" asp-append-version="true"></script>
+}

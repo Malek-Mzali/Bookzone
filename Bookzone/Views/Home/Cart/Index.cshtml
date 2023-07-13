@@ -1,0 +1,110 @@
+﻿@using System.Security.Claims
+@{
+    ViewBag.Title = "Cart";
+    Layout = "_Layout";
+}
+<div class="container py-3 mx-auto" >
+    <div class="d-flex justify-content-center row ">
+        <div class="col-md-7">
+            <form id="payment-form">
+                <div class="p-2">
+                <h4>Shopping cart</h4>
+            </div>
+                @for (var i = 0; i < Enumerable.Count(ViewBag.cart); i++)
+                {
+                    <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-2 rounded  border-bottom">
+                        <div class="mr-1 book">
+                            <img class="rounded book-img" src="/img/document/@ViewBag.cart[i].Product.DocumentGroup.CoverPage" alt=""></div>
+                        <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">@ViewBag.cart[i].Product.DocumentGroup.OriginalTitle</span>
+                        </div>
+                        <div>
+                            <span class="font-weight-bold text-grey">@(ViewBag.cart[i].Product.DocumentGroup.Price * ViewBag.cart[i].Quantity) DT</span>
+                        </div>
+                        <div class="d-flex align-items-center"><a onclick="RemoveFromCart(@ViewBag.cart[i].Product.DocumentGroup.Id)" class="cursor-p"><i class="fa fa-trash mb-1 text-danger"></i></a></div>
+                    </div>
+                    <input id="IntList@i" name="ListDoc[@i]" type="hidden" value="@ViewBag.cart[i].Product.DocumentGroup.Id"/>
+                }
+                <div class=" border mt-4">
+                    <div class="row m-auto">
+                        <div class="col-10 col-md-7  m-auto">
+                            <div class="bt-drop-in-wrapper mx-auto">
+                                <div id="bt-dropin"></div>
+                            </div>
+                        </div>
+                        <div class="col-8 col-md-4 mx-auto mt-5">
+                            @foreach (var price in @ViewBag.cart)
+                            {
+                                <div class="row d-flex justify-content-between px-3">
+                                    <p class="mb-1 text-left">@price.Product.DocumentGroup.OriginalTitle</p>
+                                    <h6 class="mb-1 text-right">@price.Product.DocumentGroup.Price DT</h6>
+                                </div>
+                            }
+                            <div class="row d-flex justify-content-between px-3" id="tax">
+                                <p class="mb-1 text-left">Total </p>
+                                <h6 class="mb-1 text-right">@ViewBag.total DT</h6>
+                            </div>
+                            <div class="row d-flex justify-content-center px-3" >
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <input type="hidden" name="Nonce" id="nonce"/>
+                                <input type="hidden" name="Total" id="total" value="@ViewBag.total"/>
+                                <input type="hidden" name="UserId" id="UserId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)"/>
+                                <button class="btn-block pay-button" type="submit"> <span> <span id="checkout">Checkout</span> <span id="check-amt">@ViewBag.total DT</span> </span> </button>
+                            }
+                            else
+                            {
+                                <button class="btn-block pay-button btn-outline-" type="button" onclick="location.href='@Url.Action("Login", "Account")'"> <span> <span id="checkout">Login</span> <span id="check-amt">@ViewBag.total DT</span> </span> </button>
+                            }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>       
+    </div>
+</div>
+<script src="https://js.braintreegateway.com/web/dropin/1.22.0/js/dropin.min.js"></script>
+
+
+<script>
+    let client_token = "@ViewBag.ClientToken";
+    
+    braintree.dropin.create({
+        authorization: client_token,
+        container: '#bt-dropin',
+    }, function (createErr, instance) {
+        document.querySelector('#payment-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            $(".pay-button").prop("disabled", true);
+
+            instance.requestPaymentMethod(function (err, payload) {
+                if (err) {
+                    return;
+                }
+                
+                document.querySelector('#nonce').value = payload.nonce;
+                let form = $('#payment-form').serialize();
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/Create/",
+                    data: form,
+                    success: function (data) {
+                        if (data.data.success){
+                      
+                           setTimeout(function () {
+                               window.location.href = '/Home/MyDocuments/'
+                           },3000)
+                        }else{
+                           setTimeout(function () {
+                               window.location.href = '/Home/'
+                           },3000)                            
+                        }
+
+                    }
+                });
+            });
+            
+        });
+    });
+</script>

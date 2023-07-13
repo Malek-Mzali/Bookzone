@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "New Collection";
+    Layout = "_DashboardLayout";
+}
+
+@using System.Security.Claims
+@model Bookzone.Models.Entity.Collection.Collection
+<input type="hidden" id="txtRoleUser" value="@User.FindFirstValue(ClaimTypes.Role)"/>
+<input type="hidden" id="txtUserId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)"/>
+
+<div class="container-fluid py-4">
+<div class="row">
+<div class="col-11">
+<div class="mb-5">
+<!--progress bar-->
+
+<!--form panels-->
+<div class="row text-center">
+<div class="col-12 col-lg-8 m-auto">
+<form id="newCollectionForm" method="post" class=" mb-8" style="height: 410px;">
+<!--new them-->
+<div class="card  p-3 border-radius-xl bg-white js-active" data-animation="FadeIn">
+    <h5 class="font-weight-bolder mb-0">New Collection</h5>
+    <div class="">
+        <div class="row">
+            <div class="col-12 col-sm-6 mt-3">
+                <label>Id Editor</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                <select style="width: 100%" asp-for="IdEditor"  class="form-control IdEditor" data-val="true" data-val-required="Required field"></select>
+                <span asp-validation-for="IdEditor" class="text-danger"></span>
+            </div>
+            <div class="col-12 col-sm-6 mt-3">
+                <label>Id Theme</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                <select style="width: 100%; height: 4em" asp-for="IdTheme"  id="IdTheme" class=" form-control" data-val="true" data-val-required="Required field"></select>
+                <span asp-validation-for="IdTheme" class="text-danger"></span>
+            </div>
+            
+        </div>
+        <div class="row">
+
+            <div class="col-12 col-sm-6 mt-3">
+                <label>Title</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                <input asp-for="Title" class=" form-control" data-val="true" data-val-required="Required field">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="col-12 col-sm-6 mt-3">
+                <label>ShortTitle</label>
+                <input asp-for="ShortTitle" class=" form-control">
+                <span asp-validation-for="ShortTitle" class="text-danger"></span>
+            </div>
+
+            <div class="col-12 mt-3">
+                <label>Description</label>
+                <textarea class=" form-control" rows="5"asp-for="Description" ></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="button-row d-flex mt-4">
+            <button class="btn bg-gradient-dark ms-auto mb-0" type="submit" title="Send">Create</button>
+        </div>
+    </div>
+</div>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Dashboard/Collection/NewCollection.js" asp-append-version="true"></script>
+    <script src="~/js/Dashboard/Shared.js" asp-append-version="true"></script>
+}

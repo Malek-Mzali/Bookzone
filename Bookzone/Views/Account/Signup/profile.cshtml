@@ -1,0 +1,77 @@
+﻿@model Bookzone.Models.Entity.User.Individual
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "_AccountLayout";
+}
+
+<div class="card card-plain mt-4">
+    <div class="card-header pb-0 text-left bg-transparent">
+        <h3 class="font-weight-bolder text-info text-gradient">Profile</h3>
+        <p class="mb-0">Fill your profile informations</p>
+    </div>
+    <div class="card-body">
+        <form asp-controller="Account" asp-action="ProfileGenerator" method="post">
+            
+            <span asp-validation-for="Firstname" class="text-danger"></span>
+            <label>Firstname</label>
+            <div class="input-group">
+                <input asp-for="Firstname" class="form-control" placeholder="Firstname"/>
+                <div class="input-group-text">
+                    <span class="fas fa-user"></span>
+                </div>
+            </div>
+            <span asp-validation-for="Lastname" class="text-danger"></span>
+            <label>Lastname</label>
+            <div class="input-group">
+                <input asp-for="Lastname" class="form-control" placeholder="Lastname"/>
+                <div class="input-group-text">
+                    <span class="fas fa-user"></span>
+                </div>
+            </div>
+            <span asp-validation-for="Gender" class="text-danger"></span>
+            <label>Gender</label>
+            <div class="input-group">
+                <select id="Gender" class="form-control select2" data-placeholder="Select a Gender" asp-for="Gender" name="Gender">
+                    <option value="Select a Gender" selected aria-readonly="true" disabled="disabled">Select a Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                    <div class="input-group-text">
+                        <span class="fas fa-venus-mars"></span>
+                    </div>
+            </div>
+            <span asp-validation-for="DateofBirth" class="text-danger"></span>
+            <label>Date of birth</label>
+            <div class="input-group">
+                <input type="date" class="form-control" asp-for="DateofBirth" data-inputmask-alias="Date of Birth" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                    <div class="input-group-text">
+                        <span class="fas fa-birthday-cake"></span>
+                    </div>
+            </div>
+            <span asp-validation-for="Profession" class="text-danger"></span>
+            <label>Profession</label>
+            <div class="input-group">
+                <input asp-for="Profession" class="form-control" placeholder="Profession"/>
+                    <div class="input-group-text">
+                        <span class="fas fa-graduation-cap"></span>
+                    </div>
+            </div>
+            <span asp-validation-for="Organization" class="text-danger"></span>
+            <label>Organization</label>
+            <div class="input-group">
+                <input asp-for="Organization" class="form-control" placeholder="Organization"/>
+                    <div class="input-group-text">
+                        <span class="fas fa-building"></span>
+                    </div>
+            </div>
+            <div class="col-12 mt-5 text-center">
+                <button type="submit" class="btn btn-block btn-success btn-flat ">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+

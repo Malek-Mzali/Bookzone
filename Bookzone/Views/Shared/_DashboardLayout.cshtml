@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    
+
+    <partial name="_Styles" />
+    <partial name="_ValidationScriptsPartial" />
+    <title>@ViewData["Title"]</title>
+</head>
+<body class="g-sidenav-show  bg-gray-100">
+  
+
+<partial name="_MainNavigation"/>
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <partial name="_TopNavigation"/>
+    @RenderBody()
+</main>
+
+
+
+
+<partial name="_Footer"/>
+<partial name="_Scripts"/>
+@if (IsSectionDefined("Scripts"))
+{
+    @RenderSection("Scripts", required: false)
+}
+@await Component.InvokeAsync("NToastNotify")
+
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "Author";
+    Layout = "_DashboardLayout";
+}
+
+@model Bookzone.Models.Entity.Author.Author
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Author informations</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="AuthorList" class="table table-hover  nowrap dt-body-center">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Biography</th>
+                <th style="width: 5px;">Action</th>
+            </tr>
+            </thead>
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+
+@section Scripts{
+    <script src="~/js/datatables.min.js"></script>
+    <script src="~/js/Dashboard/Author/AuthorList.js" asp-append-version="true"></script>
+    <script src="~/js/Dashboard/Shared.js" asp-append-version="true"></script>
+
+}
+
+
+<div class="modal fade" id="editAuthor"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Author</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editAuthorform" method="post">
+                    <div class="card-body">
+                        <div class="row">
+                            <input id="txtId" type="hidden" asp-for="Id">
+
+                            <div class="row mt-5 mb-3" >
+                                <div class="col-sm-2">
+                                    <div class="avatar avatar-xxl position-relative">
+                                        <img class="border-radius-md" id="txtPhoto" alt="">
+                                        <input type="file" id="PhotoUpload" data-type="author" accept="image/png, image/jpeg" style="display:none"/>
+                                        <label for="PhotoUpload" class="btn btn-sm btn-icon-only bg-gradient-light position-absolute bottom-0 end-0 mb-n2 me-n2">
+                                            <i class="fa fa-pen top-0" data-bs-toggle="tooltip" data-bs-placement="top" title="" aria-hidden="true" data-bs-original-title="Edit Image" aria-label="Edit Image"></i><span class="sr-only">Edit Image</span>
+                                        </label>
+                                        <button type="button" id="deletePicture" class="btn btn-sm btn-icon-only bg-gradient-light position-absolute bottom-3 end-0 me-n2" data-type="document">
+                                            <i class="fa fa-remove top-0" data-bs-toggle="tooltip" data-bs-placement="top"   aria-hidden="true" data-bs-original-title="Delete Image" aria-label="Delete Image"></i><span class="sr-only">Edit Image</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mx-2 mt-5">
+                                    <div class="progress" id="PicturePBClass" style="display: none">
+                                        <div id="PicturePB" class="progress-bar"   >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Name</label>&nbsp;<span style="color:red;">*</span>&nbsp;<span class="text-danger" data-valmsg-replace="true"></span>
+                                        <input asp-for="Name" class="form-control" data-val="true" data-val-required="Required field" id="txtName">
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+    
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Biography</label>&nbsp;
+                                        <textarea rows="5" asp-for="Biography" class="form-control"  id="txtBiography"></textarea>
+                                        <span asp-validation-for="Biography" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+
+
+        
+
+                    </div>
+
+
+
+                    <div class="card-footer text-right">
+                        <button data-bs-dismiss="modal" type="button" aria-label="Close" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="AuthorInfo"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+<div class="modal-content">
+
+<div class="modal-body">
+<div class="card-body">
+<div class="row">
+
+
+    <div class="col-md-3 col-sm-12 col-xs-12 col-12 ">
+        <img class="img-fluid " id="AuthorPhoto" src=""  alt="">
+    </div>
+
+        <div class="col-md-9 col-12 ">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="Documents-tab" data-bs-toggle="tab" data-bs-target="#Documents" type="button" role="tab" aria-controls="Documents" aria-selected="true">Documents</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="Biography-tab" data-bs-toggle="tab" data-bs-target="#Biography" type="button" role="tab" aria-controls="Biography" aria-selected="false">Biography</a>
+                </li>
+
+            </ul>
+            <div class="tab-content" id="authorContent">
+                <div class="tab-pane fade show active" id="Documents" role="tabpanel" aria-labelledby="Documents-tab">
+                    <table id="DocumentListAuthor" class="table table-stripe table-bordered table-hover dt-responsive nowrap">
+                    </table>
+                </div>
+                <div class="tab-pane fade p-3" id="Biography" role="tabpanel" aria-labelledby="Biography-tab">
+                    <p id="txtBiography2"></p>
+                </div>
+            </div>
+        </div>
+        
+    
+            
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
