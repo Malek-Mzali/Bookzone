@@ -146,17 +146,17 @@ namespace Bookzone.Controllers
             [Authorize(Roles = "Administrator,Editor")]
             [HttpPost]
             [RequestFormLimits(MultipartBodyLengthLimit = 104857600)]
-            public  IActionResult NewDocumentMarc(IFormFile MarcFile)
+            public  IActionResult NewDocumentMarc(IFormFile marcFile)
             {
-                if (Path.GetExtension(MarcFile.FileName) == ".xml")
+                if (Path.GetExtension(marcFile.FileName) == ".xml")
                 {
-                    using (Stream stream = MarcFile.OpenReadStream()){
+                    using (Stream stream = marcFile.OpenReadStream()){
                         MarcXmlReader reader = new MarcXmlReader(stream);
-                        int TotalRecord = 0;
+                        int totalRecord = 0;
                         int currentRecord = 0;
                         try
                         {
-                            TotalRecord = reader.ToArray().Length;
+                            totalRecord = reader.ToArray().Length;
                         }
                         catch
                         {
@@ -174,7 +174,7 @@ namespace Bookzone.Controllers
                                     data.Add(BLLMarc.RecordApi(record));
                                     currentRecord++;
                                 }
-                                Console.WriteLine(currentRecord + "/"+TotalRecord);
+                                Console.WriteLine(currentRecord + "/"+totalRecord);
                             }
                         }
                         catch (Exception)
@@ -189,14 +189,14 @@ namespace Bookzone.Controllers
                 }
                 else
                 {
-                    using (Stream stream = MarcFile.OpenReadStream()){
+                    using (Stream stream = marcFile.OpenReadStream()){
                         using (IMarcReader reader = new MarcStreamReader(stream, "UTF-8"))
                         {
-                            int TotalRecord = 0;
+                            int totalRecord = 0;
                             int currentRecord = 0;
                             try
                             {
-                                TotalRecord = reader.ToArray().Length;
+                                totalRecord = reader.ToArray().Length;
                             }
                             catch
                             {
@@ -217,7 +217,7 @@ namespace Bookzone.Controllers
                                         currentRecord++;
                                     }
 
-                                    Console.WriteLine(currentRecord + "/"+TotalRecord);
+                                    Console.WriteLine(currentRecord + "/"+totalRecord);
                                 }
                             }
                             catch (Exception )
