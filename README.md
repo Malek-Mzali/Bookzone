@@ -78,6 +78,42 @@ These are the frameworks/libraries used to built this project.
 * [![sql][sql.com]][sql-url]
 
 
+<!-- GETTING STARTED -->
+## Getting Started
+
+To get a local copy up and running follow these simple example steps.
+
+### Installation
+
+_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+
+1. Setup a sql server database
+2. Edit appsettings.json
+3. In DatabaseConfig section change DbConnnectionString to your database string example
+   ```sh
+   "DatabaseConfig": {
+    "DbConnnectionString": "Data Source=LOUKA\\SQLEXPRESS;Initial Catalog=Work;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+    },
+   ```
+4. Get your Api key from Braintreee and edit section
+   ```sh
+    "BraintreeGateway": {
+    "Environment": "Your environment type ex SANDBOX",
+    "MerchantId": "Merchant ID",
+    "PublicKey": "Public Key",
+    "PrivateKey": "Private Key"
+    },
+   ```
+4. Edit gmail smtp informatio in this section
+      ```sh
+    "EmailGateway": {
+      "Address": "emailAddress@gmail.com",
+      "Password": "applicationPassword",
+      "From": "emailAddress@gmail.com",
+      "Subject": "Activate account(email title)",
+      "host": "ex : https://localhost:5001/"
+    },
+   ```
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
