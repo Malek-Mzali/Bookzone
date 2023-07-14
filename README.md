@@ -4,7 +4,7 @@
   <p align="center">
     This work present my final project towards a bachelor’s degree in computer science.
     <br />
-    <a href="#">View Demo</a>
+    <a href="https://bookzone.somee.com/">View Demo</a>
     ·
     <a href="https://www.linkedin.com/in/malek-mzali-163b0b222/">Contact me</a>
   </p>
