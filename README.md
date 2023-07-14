@@ -54,7 +54,7 @@ Here's the features:
 * Allow users to access or download a desired chapter via the summary feature.<details><img src="https://github.com/Malek-Mzali/Bookzone/blob/661cfeb2868b6b6a28af99909275413250221186/Bookzone/wwwroot/img/assets/summary.gif"></details>
 * Comment section to express your point of view of each resource.<details><img src="https://github.com/Malek-Mzali/Bookzone/blob/2a3f3ba3c021f86b32a91519a4d86a3548ca91a2/Bookzone/wwwroot/img/assets/COMMENT.png"></details>
 * Dashboard 
-    - [ ] General statistics to keep you in track of your plateform ex Sales and visitors overview.
+    - [ ] General statistics to keep you in track of your plateform ex Sales and visitors overview.<details><img src="https://github.com/Malek-Mzali/Bookzone/blob/bb281d059c3809585838e69338af06689ae0c564/Bookzone/wwwroot/img/assets/stats.png"></details>
     - [ ] View/Add/Manage/Delete users
     - [ ] View/Add/Manage/Delete authors
     - [ ] View/Add/Manage/Delete themes and collections 
