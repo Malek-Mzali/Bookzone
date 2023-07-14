@@ -187,7 +187,7 @@ function loadDataTable() {
                                 <a class="dropdown-item" href="#" data-bs-toggle="modal" onclick="EditBtnUser(${data})" data-bs-target="#editUser"><i class="fas fa-edit m-r-5"></i> Edit</a>
                             </li>
                             <li>
-                                <a class="dropdown-item"  href="#"  data-toggle="tooltip" title="Disabled for demo"><i
+                                <a class="dropdown-item"  href="#"  onclick="deleteUserDash(${data})"><i
                                     class="fas fa-trash m-r-5"></i> Delete</a>
                             </li>
                         </ul>
@@ -204,4 +204,3 @@ function loadDataTable() {
         responsive: true
     });
 }
-//onclick="deleteUserDash(${data})"
