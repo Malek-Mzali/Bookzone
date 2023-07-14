@@ -4,9 +4,9 @@
   <p align="center">
     This work present my final project towards a bachelor’s degree in computer science.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="#">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Contact me</a>
+    <a href="https://www.linkedin.com/in/malek-mzali-163b0b222/">Contact me</a>
   </p>
 </div>
 
