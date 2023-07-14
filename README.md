@@ -51,8 +51,8 @@ Here's the features:
 * Login, Register with email verification and profile management. <details><img src="https://github.com/Malek-Mzali/Bookzone/blob/05a8272436f16692cfd4b1be86885cb70daaa0e5/Bookzone/wwwroot/img/assets/Login.gif"></details>
 * Wishlist, Cart and check out system with a fully workable payment system using "Brain Tree" technology. <details><img src="https://github.com/Malek-Mzali/Bookzone/blob/9f7ea41cfcc6948d4f2f8abd30dab29f9adaa190/Bookzone/wwwroot/img/assets/Cart%20.gif"></details>
 * Search with multiples filters (ex Title, Author, Theme, Isbn, ..).<details><img src="https://github.com/Malek-Mzali/Bookzone/blob/55632a432b97ed0e5c489276b4a56009e502e0d2/Bookzone/wwwroot/img/assets/search.png"></details>
-* Allow users to access or download a desired chapter via the summary feature.
-* Comment section to express your point of view of each resource.
+* Allow users to access or download a desired chapter via the summary feature.<details><img src="https://github.com/Malek-Mzali/Bookzone/blob/661cfeb2868b6b6a28af99909275413250221186/Bookzone/wwwroot/img/assets/summary.gif"></details>
+* Comment section to express your point of view of each resource.<details><img src="https://github.com/Malek-Mzali/Bookzone/blob/2a3f3ba3c021f86b32a91519a4d86a3548ca91a2/Bookzone/wwwroot/img/assets/COMMENT.png"></details>
 * Dashboard 
     - [ ] General statistics to keep you in track of your plateform ex Sales and visitors overview.
     - [ ] View/Add/Manage/Delete users
