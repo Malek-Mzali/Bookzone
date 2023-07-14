@@ -86,8 +86,8 @@ _Below is an example of how you can instruct your audience on installing and set
 3. In DatabaseConfig section change DbConnnectionString to your database string example
    ```sh
    "DatabaseConfig": {
-    "DbConnnectionString": "Data Source=LOUKA\\SQLEXPRESS;Initial Catalog=Work;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
-    },
+    "DbConnnectionString": "workstation id=HostIP;packet size=4096;user id=Username;pwd=Password;data source=HostIP;persist security info=False;initial catalog=DatabaseName"
+    }
    ```
 4. Get your Api key from Braintreee and edit section
    ```sh
@@ -96,17 +96,27 @@ _Below is an example of how you can instruct your audience on installing and set
     "MerchantId": "Merchant ID",
     "PublicKey": "Public Key",
     "PrivateKey": "Private Key"
-    },
+    }
    ```
 4. Edit gmail smtp informatio in this section
       ```sh
     "EmailGateway": {
-      "Address": "emailAddress@gmail.com",
-      "Password": "applicationPassword",
-      "From": "emailAddress@gmail.com",
-      "Subject": "Activate account(email title)",
-      "host": "ex : https://localhost:5001/"
-    },
+      "Address": "marmalik2001@gmail.com",
+      "Password": "BIgTsGnASb3aPEO7",
+      "From": "bookzone@bookzone.com",
+      "Subject": "Activate account",
+      "Smtp": "smtp-relay.brevo.com",
+      "Port": 587,
+      "host": "https://bookzone.somee.com/"
+    }
+   ```
+<!-- USAGE EXAMPLES -->
+## Usage
+To test the demo as administrator you can use this account 
+   ```sh
+    email : test@bookzone.com
+    password : test
+    }
    ```
 
 <!-- MARKDOWN LINKS & IMAGES -->
