@@ -144,7 +144,7 @@ namespace Bookzone.Models.DAL
                 emailAuth.Body, null, "text/html"
             );
             message.AlternateViews.Add(htmlView);
-            using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+            using (SmtpClient smtp = new SmtpClient(emailAuth.Smtp, emailAuth.Port))
             {
                 smtp.Credentials = new NetworkCredential(emailAuth.Address, emailAuth.Password);
                 smtp.EnableSsl = true;

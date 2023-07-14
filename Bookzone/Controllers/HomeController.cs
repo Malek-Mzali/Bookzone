@@ -9,7 +9,6 @@ using Bookzone.Models.Entity.Document;
 using Bookzone.Models.Entity.Product;
 using Bookzone.Models.Entity.User;
 using Braintree;
-using Ebook.Models.Entity.Document;
 using iText.Kernel.Pdf;
 using iText.Kernel.Utils;
 using Microsoft.AspNetCore.Authorization;

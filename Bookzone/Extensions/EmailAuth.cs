@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using Microsoft.Extensions.Configuration;
 
 namespace Bookzone.Extensions
 {
@@ -155,7 +156,7 @@ margin: 0 !important;
                 <td bgcolor=""#ffffff"" align=""center"" style=""padding: 20px 30px 60px 30px;"">
                     <table border=""0"" cellspacing=""0"" cellpadding=""0"">
                         <tr>
-                            <td align=""center"" style=""border-radius: 3px;"" bgcolor=""#FFA73B""><a href=""#Link#"" target=""_blank"" style=""font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #FFA73B; display: inline-block;"">Confirm Account</a></td>
+                            <td align=""center"" style=""border-radius: 3px;"" bgcolor=""#FFA73B""><a href=""#Link#"" target=""_blank"" style=""font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #FFA73B; display: inline-block;"">Verify</a></td>
                         </tr>
                     </table>
                 </td>
@@ -165,7 +166,7 @@ margin: 0 !important;
 </tr> <!-- COPY -->
 <tr>
     <td bgcolor=""#ffffff"" align=""left"" style=""padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;"">
-        <p style=""margin: 0;"">If that doesn't work, copy and paste the following link in your browser:</p>
+        <p style=""margin: 0;"">If it doesn't work, use the following link in your browser:</p>
     </td>
 </tr> <!-- COPY -->
 <tr>
@@ -369,7 +370,10 @@ margin: 0 !important;
             Link =
                 new ConfigurationBuilder().AddJsonFile("appsettings.json").Build()
                     .GetSection("EmailGateway")["host"]+$"Account/activateUser?code={code}";
-            
+            Smtp = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build()
+                .GetSection("EmailGateway")["smtp"];
+            Port = Convert.ToInt32(new ConfigurationBuilder().AddJsonFile("appsettings.json").Build()
+                .GetSection("EmailGateway")["Port"]);
             Body = mail.Replace("#Link#", Link);
             BodyReset = mail2.Replace("#Link#", Link);
 
@@ -382,6 +386,7 @@ margin: 0 !important;
         public string From { get; set; }
         public string Subject { get; set; }
         private string Link { get; set; }
-
+        public string Smtp { get; set; }
+        public int Port { get; set; }
     }
 }

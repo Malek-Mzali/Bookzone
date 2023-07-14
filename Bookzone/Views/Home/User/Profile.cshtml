@@ -493,11 +493,20 @@
 		                    
 		                    <div class="row gutters m-auto">
                     			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    				<div class="text-right">
-                    					<button type="button" id="UpdateBtn"  class="btn btn-primary">Edit</button>
-                    					<button type="button" id="CancelBtn" class="btn btn-dark"  style="display: none">Cancel</button>	
-                    					<button type="Submit" id="submitBtn" name="submit" class="btn btn-success" style="display: none">Save</button>
-                    				</div>
+	                                <div class="text-right">
+		                                @if (Model.UsersGroup.Role == "Administrator")
+		                                {
+			                                <button type="button" id="UpdateBtn" class="btn btn-primary" disabled="disabled" data-toggle="tooltip" title="Disabled for demo">Edit</button>
+
+		                                }
+		                                else
+		                                {
+			                                <button type="button" id="UpdateBtn" class="btn btn-primary">Edit</button>
+			                                <button type="button" id="CancelBtn" class="btn btn-dark" style="display: none">Cancel</button>
+			                                <button type="Submit" id="submitBtn" name="submit" class="btn btn-success" style="display: none">Save</button>
+		                                }
+
+	                                </div>
                     			</div>
 		                    </div>
 						}
