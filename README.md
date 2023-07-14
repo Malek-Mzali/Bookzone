@@ -89,7 +89,7 @@ _Below is an example of how you can instruct your audience on installing and set
     "DbConnnectionString": "workstation id=HostIP;packet size=4096;user id=Username;pwd=Password;data source=HostIP;persist security info=False;initial catalog=DatabaseName"
     }
    ```
-4. Get your Api key from Braintreee and edit section
+4. Get your Api key from Braintreee then edit this
    ```sh
     "BraintreeGateway": {
     "Environment": "Your environment type ex SANDBOX",
@@ -98,16 +98,16 @@ _Below is an example of how you can instruct your audience on installing and set
     "PrivateKey": "Private Key"
     }
    ```
-4. Edit gmail smtp informatio in this section
+4. Edit  Smtp informations in this section
       ```sh
     "EmailGateway": {
-      "Address": "marmalik2001@gmail.com",
-      "Password": "BIgTsGnASb3aPEO7",
-      "From": "bookzone@bookzone.com",
-      "Subject": "Activate account",
-      "Smtp": "smtp-relay.brevo.com",
+      "Address": "Address",
+      "Password": "Password",
+      "From": "From addreess",
+      "Subject": "Mail Title",
+      "Smtp": "YourSmtpHere",
       "Port": 587,
-      "host": "https://bookzone.somee.com/"
+      "host": "https://YourHostHere.com/"
     }
    ```
 <!-- USAGE EXAMPLES -->
@@ -116,7 +116,6 @@ To test the demo as administrator you can use this account
    ```sh
     email : test@bookzone.com
     password : test
-    }
    ```
 
 <!-- MARKDOWN LINKS & IMAGES -->
