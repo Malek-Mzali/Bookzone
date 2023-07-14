@@ -44,12 +44,13 @@
 
 Bookzone is a responsive plateform with multiple features to facilitate and optimize the distribution, management and access of digital resources.
 
+  
 Here's the features:
-* Responsive design that render well on a variety of screen sizes.
 * Implimented a high level of security to protect digital resources and manage users roles (Administrator, Editor, Organization, Individual).
-* Login, Register with email verification and profile management.
-* Wishlist, Cart and check out system with a fully workable payment system using "Brain Tree" technology.
-* Search with multiples filters (ex Title, Author, Theme, Isbn, ..).
+* Responsive design that render well on a variety of screen sizes. <details><img src="https://github.com/Malek-Mzali/Bookzone/blob/993e5994f697029f768b0851a03fe497cef10ac5/Bookzone/wwwroot/img/assets/phone.png?raw=true" height="10%" width="25%"></details>
+* Login, Register with email verification and profile management. <details><img src="https://github.com/Malek-Mzali/Bookzone/blob/05a8272436f16692cfd4b1be86885cb70daaa0e5/Bookzone/wwwroot/img/assets/Login.gif"></details>
+* Wishlist, Cart and check out system with a fully workable payment system using "Brain Tree" technology. <details><img src="https://github.com/Malek-Mzali/Bookzone/blob/9f7ea41cfcc6948d4f2f8abd30dab29f9adaa190/Bookzone/wwwroot/img/assets/Cart%20.gif"></details>
+* Search with multiples filters (ex Title, Author, Theme, Isbn, ..).<details><img src="https://github.com/Malek-Mzali/Bookzone/blob/55632a432b97ed0e5c489276b4a56009e502e0d2/Bookzone/wwwroot/img/assets/search.png"></details>
 * Allow users to access or download a desired chapter via the summary feature.
 * Comment section to express your point of view of each resource.
 * Dashboard 
