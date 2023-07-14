@@ -143,7 +143,7 @@ To test the demo as administrator you can use this account
 [Angular-url]: https://angular.io/
 [Ajax.dev]: https://img.shields.io/badge/Ajax-4A4A55?style=for-the-badge&logo=ajax&logoColor=FF3E00
 [Ajax-url]: https://jquery.com 
-[sql.com]: https://img.shields.io/badge/Sql-FF2D20?style=for-the-badge&logo=sql&logoColor=white
+[sql.com]: https://img.shields.io/badge/Sql-FF2D20?style=for-the-badge&logo=MSSQL&logoColor=white
 [sql-url]: https://www.microsoft.com/en-us/sql-server
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
